@@ -15,7 +15,7 @@ public class SupervisorService
         this.db = db;
         this.userContext = userContext;
     }
-
+//Supervisor sees his teams
     public List<Team> GetTeamsForSupervisor(Guid supervisorId)
     {
         if (userContext.Role == Role.Supervisor && userContext.UserId != supervisorId)
@@ -31,7 +31,7 @@ public class SupervisorService
             .ThenInclude(m => m.Capabilities)
             .ToList();
     }
-
+// Supervisor accepts the team assigned to him
     public void AcceptAssignment(Guid teamId)
     {
         var team = db.Teams.Find(teamId)
@@ -46,7 +46,7 @@ public class SupervisorService
         team.AssignmentStatus = AssignmentStatus.Accepted;
         db.SaveChanges();
     }
-
+// Supervisor refuses the team assigned to him
     public void RefuseAssignment(Guid teamId)
     {
         var team = db.Teams.Find(teamId)
