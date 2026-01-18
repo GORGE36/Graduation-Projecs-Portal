@@ -15,7 +15,7 @@ public class CoordinatorService
         this.db = db;
         this.userContext = userContext;
     }
-    
+// Coordinator creates team withs students
     public Team CreateTeamWithProject(
         Guid supervisorId,
         string teamName,
@@ -61,6 +61,7 @@ public class CoordinatorService
             student.Team = team;
             student.TeamId = team.TeamId; 
             team.Members.Add(student);
+
         }
 
         var project = new Project
@@ -79,6 +80,7 @@ public class CoordinatorService
         return team;
     }
 
+    //Coordinator adds students to team
     public void AddStudentToTeam(Guid teamId, Guid studentId)
     {
         if (userContext.Role != Role.Coordinator && userContext.Role != Role.Admin)
@@ -99,7 +101,7 @@ public class CoordinatorService
         student.TeamId = teamId;
         db.SaveChanges();
     }
-
+// Coordinator removes sudents from team
     public void RemoveStudentFromTeam(Guid teamId, Guid studentId)
     {
         if (userContext.Role != Role.Coordinator && userContext.Role != Role.Admin)
@@ -117,7 +119,7 @@ public class CoordinatorService
         student.TeamId = null;
         db.SaveChanges();
     }
-
+// Coordinator delets team
     public void DeleteTeam(Guid teamId)
     {
         if (userContext.Role != Role.Coordinator && userContext.Role != Role.Admin)
@@ -134,7 +136,7 @@ public class CoordinatorService
         db.Teams.Remove(team);
         db.SaveChanges();
     }
-
+// Coordinator swaps members between teams
     public void SwapMembersBetweenTeams(Guid team1Id, Guid student1Id, Guid team2Id, Guid student2Id)
     {
         if (userContext.Role != Role.Coordinator && userContext.Role != Role.Admin)
@@ -173,7 +175,7 @@ public class CoordinatorService
 
         db.SaveChanges();
     }
-
+// Shares details of teams with Coordinator
     public List<Team> GetAllTeamsWithDetails()
     {
         if (userContext.Role != Role.Coordinator && userContext.Role != Role.Admin)
