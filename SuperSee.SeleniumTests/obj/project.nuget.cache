@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pDIBFvDWVhg=",
+  "dgSpecHash": "IjpXI6wKhTA=",
   "success": true,
   "projectFilePath": "/home/zaidabubaker101/Desktop/The_Graduate_Projects_Portal/SuperSee.SeleniumTests/SuperSee.SeleniumTests.csproj",
   "expectedPackageFiles": [
@@ -43,7 +43,13 @@
     "/home/zaidabubaker101/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/home/zaidabubaker101/.nuget/packages/selenium.webdriver/4.39.0/selenium.webdriver.4.39.0.nupkg.sha512",
     "/home/zaidabubaker101/.nuget/packages/selenium.webdriver.chromedriver/144.0.7559.3100/selenium.webdriver.chromedriver.144.0.7559.3100.nupkg.sha512",
+    "/home/zaidabubaker101/.nuget/packages/system.collections.immutable/8.0.0/system.collections.immutable.8.0.0.nupkg.sha512",
+    "/home/zaidabubaker101/.nuget/packages/system.diagnostics.diagnosticsource/8.0.0/system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "/home/zaidabubaker101/.nuget/packages/system.diagnostics.eventlog/8.0.0/system.diagnostics.eventlog.8.0.0.nupkg.sha512",
+    "/home/zaidabubaker101/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
+    "/home/zaidabubaker101/.nuget/packages/system.reflection.metadata/8.0.0/system.reflection.metadata.8.0.0.nupkg.sha512",
+    "/home/zaidabubaker101/.nuget/packages/system.text.encodings.web/8.0.0/system.text.encodings.web.8.0.0.nupkg.sha512",
+    "/home/zaidabubaker101/.nuget/packages/system.text.json/8.0.0/system.text.json.8.0.0.nupkg.sha512",
     "/home/zaidabubaker101/.nuget/packages/xunit/2.9.3/xunit.2.9.3.nupkg.sha512",
     "/home/zaidabubaker101/.nuget/packages/xunit.abstractions/2.0.3/xunit.abstractions.2.0.3.nupkg.sha512",
     "/home/zaidabubaker101/.nuget/packages/xunit.analyzers/1.18.0/xunit.analyzers.1.18.0.nupkg.sha512",
@@ -51,7 +57,9 @@
     "/home/zaidabubaker101/.nuget/packages/xunit.core/2.9.3/xunit.core.2.9.3.nupkg.sha512",
     "/home/zaidabubaker101/.nuget/packages/xunit.extensibility.core/2.9.3/xunit.extensibility.core.2.9.3.nupkg.sha512",
     "/home/zaidabubaker101/.nuget/packages/xunit.extensibility.execution/2.9.3/xunit.extensibility.execution.2.9.3.nupkg.sha512",
-    "/home/zaidabubaker101/.nuget/packages/xunit.runner.visualstudio/3.1.4/xunit.runner.visualstudio.3.1.4.nupkg.sha512"
+    "/home/zaidabubaker101/.nuget/packages/xunit.runner.visualstudio/3.1.4/xunit.runner.visualstudio.3.1.4.nupkg.sha512",
+    "/home/zaidabubaker101/.nuget/packages/microsoft.netcore.app.ref/8.0.22/microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
+    "/home/zaidabubaker101/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.22/microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
   ],
   "logs": []
 }
