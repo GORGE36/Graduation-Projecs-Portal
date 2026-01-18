@@ -1,0 +1,287 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>لوحة المشرف — Graduation Projects Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        #bgSlider {
+            min-height: 100vh;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.5s ease-in-out;
+            background-attachment: fixed;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 1.5rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background: rgba(100,116,139,.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <script>
+  if (localStorage.getItem("loggedIn") !== "true" || localStorage.getItem("role") !== "Supervisor") {
+    window.location.href = "Login.html";
+  }
+    </script>
+
+    <div id="bgSlider" class="flex min-h-screen">
+        <aside class="w-80 glass-nav p-6 flex flex-col">
+            <div class="flex items-center gap-3 mb-10">
+                <div>
+                    <div class="flex items-center justify-center p-4">
+                        <img src="img/LOGO.jpg"
+                             alt="Coordinator Logo"
+                             class="w-12 h-12 rounded-lg object-cover shadow-md border border-white/10">
+                        <span class="mr-3 px-4 py-1.5 bg-[#00d4ff]/20 backdrop-blur-md border border-white/30 rounded-full font-[1000] text-slate-900 text-lg shadow-sm">
+                            لوحة المشرف
+                        </span>
+                    </div>
+
+                    <div class="text-xs text-slate-600 font-semibold uppercase"></div>
+                </div>
+            </div>
+
+            <nav class="flex-1 space-y-2">
+                <button data-view="overview" class="w-full text-right py-3 px-4 rounded-xl bg-white/40 shadow-sm transition-all font-bold text-slate-700 border border-white/30"> + لوحة القيادة</button>
+                <button data-view="requests" class="w-full text-right py-3 px-4 rounded-xl hover:bg-white/40 transition-all font-bold text-slate-700">الطلبات الواردة</button>
+                <button data-view="my-teams" class="w-full text-right py-3 px-4 rounded-xl hover:bg-white/40 transition-all font-bold text-slate-700">فرقك المعتمدة</button>
+                <button data-view="messages" class="w-full text-right py-3 px-4 rounded-xl hover:bg-white/40 transition-all font-bold text-slate-700">الرسائل</button>
+            </nav>
+
+            <button onclick="logout()" class="mt-auto w-12 h-12 bg-yellow-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all self-end">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
+                </svg>
+            </button>
+        </aside>
+
+        <main class="flex-1 p-8 overflow-auto">
+            <header class="flex items-center justify-between mb-8 gap-4">
+                <div class="glass-card p-4 flex-1">
+                    <h1 id="pageTitle" class="text-2xl font-black text-slate-900">مرحباً دكتور</h1>
+                    <p class="text-sm font-medium text-slate-600 italic" id="welcomeMsg">جاري تحميل بياناتك...</p>
+                </div>
+            </header>
+
+            <section id="overview" class="space-y-6">
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="glass-card p-6 shadow-lg border-t-4 border-indigo-500">
+                        <div class="text-sm font-bold text-slate-500">طلبات انتظار</div>
+                        <div id="badgeCount" class="text-3xl font-black mt-2">0</div>
+                    </div>
+                    <div class="glass-card p-6 shadow-lg border-t-4 border-emerald-500">
+                        <div class="text-sm font-bold text-slate-500">فرقك الحالية</div>
+                        <div class="text-3xl font-black mt-2">--</div>
+                    </div>
+                    <div class="glass-card p-6 shadow-lg border-t-4 border-amber-500">
+                        <div class="text-sm font-bold text-slate-500">رسائل جديدة</div>
+                        <div class="text-3xl font-black mt-2 text-amber-600">0</div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6">
+                    <h3 class="font-black mb-4 italic">تنبيهات النظام</h3>
+                    <p class="text-slate-600 font-medium">مرحباً دكتور، يمكنك مراجعة طلبات الفرق من قائمة "الطلبات الواردة" على اليمين.</p>
+                </div>
+            </section>
+
+            <section id="requests" class="hidden">
+                <div id="requestCard" class="hidden glass-card p-10 shadow-2xl border-t-8 border-indigo-600">
+                    <h2 id="teamTitle" class="text-3xl font-black text-slate-800 mb-2 italic">اسم الفريق</h2>
+                    <p class="text-slate-700 font-bold mb-8">القائد المقترح: <span id="teamLeader" class="text-indigo-700"></span></p>
+                    <div class="flex gap-4">
+                        <button onclick="approveTeam()" class="flex-1 bg-emerald-600 text-white py-4 rounded-2xl font-black shadow-lg hover:bg-emerald-700 transition-all">موافق على الإشراف</button>
+                        <button onclick="rejectTeam()" class="px-8 bg-white/30 text-slate-600 py-4 rounded-2xl font-bold hover:bg-red-50 hover:text-red-600 transition-all">رفض</button>
+                    </div>
+                </div>
+                <div id="noRequestMsg" class="glass-card p-20 text-center font-bold text-slate-400">لا يوجد طلبات جديدة حالياً</div>
+            </section>
+
+            <section id="my-teams" class="hidden glass-card p-10">
+                <h2 class="text-2xl font-black text-slate-800 mb-8 italic">فرقك المعتمدة</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right border-collapse">
+                        <thead>
+                            <tr class="text-slate-500 border-b border-white/20">
+                                <th class="pb-4 font-bold">اسم الفريق</th>
+                                <th class="pb-4 font-bold">المشروع</th>
+                                <th class="pb-4 font-bold">قائد الفريق</th>
+                                <th class="pb-4 font-bold">عدد الأعضاء</th>
+                            </tr>
+                        </thead>
+                        <tbody id="acceptedTeamsList">
+                            <tr>
+                                <td colspan="4" class="py-10 text-center text-slate-400 italic">جاري تحميل الفرق...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="messages" class="hidden glass-card p-10"><h2 class="font-bold">صندوق الرسائل...</h2></section>
+        </main>
+    </div>
+
+    <script>
+
+        (function () {
+            const images = ['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg', 'img/img4.jpg', 'img/img5.jpg'];
+            let current = 0;
+            function changeBg() {
+                const slider = document.getElementById('bgSlider');
+                if (slider) {
+                    slider.style.backgroundImage = "url('" + images[current] + "')";
+                    current = (current + 1) % images.length;
+                }
+            }
+            setInterval(changeBg, 4000);
+            changeBg();
+        })();
+ 
+
+  const sections = ['overview', 'requests', 'my-teams', 'messages'];
+  document.querySelectorAll('nav button').forEach(btn => {
+    btn.onclick = () => {
+      const view = btn.getAttribute('data-view');
+      sections.forEach(s => document.getElementById(s).classList.add('hidden'));
+      document.getElementById(view).classList.remove('hidden');
+      document.getElementById('pageTitle').textContent = btn.textContent;
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('bg-white/40', 'shadow-sm', 'border'));
+      btn.classList.add('bg-white/40', 'shadow-sm', 'border', 'border-white/30');
+    };
+  });
+  const userName = localStorage.getItem("userName");
+  const userId = localStorage.getItem("userId");
+  document.getElementById('welcomeMsg').textContent = `مرحباً ${userName || 'دكتور'}، بانتظار قراراتك الإشرافية`;
+
+  async function checkRequests() {
+    if (!userId) return;
+    try {
+      const response = await fetch(`/api/supervisor/pending-teams?supervisorId=${userId}`);
+      const teams = await response.json();
+      
+      const requestCard = document.getElementById('requestCard');
+      const noRequestMsg = document.getElementById('noRequestMsg');
+      const badgeCount = document.getElementById('badgeCount');
+
+      if (teams && teams.length > 0) {
+        const data = teams[0]; // Display the first pending team
+        requestCard.classList.remove('hidden');
+        noRequestMsg.classList.add('hidden');
+        document.getElementById('teamTitle').textContent = data.teamName;
+        document.getElementById('teamLeader').textContent = data.teamLeaderName || 'غير محدد';
+        badgeCount.textContent = teams.length;
+          requestCard.dataset.teamId = data.teamId;
+      } else {
+        requestCard.classList.add('hidden');
+        noRequestMsg.classList.remove('hidden');
+        badgeCount.textContent = "0";
+      }
+      
+      loadAcceptedTeams();
+    } catch (err) {
+      console.error("Error fetching requests:", err);
+    }
+  }
+
+  async function loadAcceptedTeams() {
+    try {
+      const resp = await fetch(`/api/supervisor/my-teams?supervisorId=${userId}`);
+      const teams = await resp.json();
+      const list = document.getElementById('acceptedTeamsList');
+      if (!list) return;
+
+      if (teams.length === 0) {
+        list.innerHTML = '<tr><td colspan="4" class="py-10 text-center text-slate-400 italic">لا يوجد فرق معتمدة بعد</td></tr>';
+        return;
+      }
+
+      list.innerHTML = teams.map(t => `
+          <tr class="border-b border-white/10 hover:bg-white/5 transition-all">
+              <td class="py-4 font-bold text-slate-800">${t.teamName}</td>
+              <td class="py-4 text-slate-600 font-medium">${t.projectTitle}</td>
+              <td class="py-4 text-slate-600 font-medium">${t.teamLeaderName}</td>
+              <td class="py-4 text-slate-600 font-medium">${t.membersCount}</td>
+          </tr>
+      `).join('');
+    } catch (err) {
+      console.error("Error loading accepted teams:", err);
+    }
+  }
+
+  async function approveTeam() {
+    const teamId = document.getElementById('requestCard').dataset.teamId;
+    if (!teamId || !userId) return;
+
+    try {
+      const response = await fetch(`/api/supervisor/accept-team/${teamId}?supervisorId=${userId}`, {
+        method: 'POST'
+      });
+      if (response.ok) {
+        alert("تم اعتماد الفريق بنجاح!");
+        checkRequests();
+      } else {
+        const res = await response.json();
+        alert("خطأ: " + res.message);
+      }
+    } catch (err) {
+      alert("خطأ في الاتصال بالسيرفر");
+    }
+  }
+
+  async function rejectTeam() {
+    const teamId = document.getElementById('requestCard').dataset.teamId;
+    if (!teamId || !userId) return;
+
+    if (!confirm("هل أنت متأكد من رفض هذا الفريق؟")) return;
+
+    try {
+      const response = await fetch(`/api/supervisor/reject-team/${teamId}?supervisorId=${userId}`, {
+        method: 'POST'
+      });
+      if (response.ok) {
+        alert("تم رفض الفريق.");
+        checkRequests();
+      } else {
+        const res = await response.json();
+        alert("خطأ: " + res.message);
+      }
+    } catch (err) {
+      alert("خطأ في الاتصال بالسيرفر");
+    }
+  }
+
+  function logout() { localStorage.clear(); window.location.href = "Login.html"; }
+  window.onload = checkRequests;
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تسجيل الدخول — FGMS+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        #bgSlider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.5s ease-in-out;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: -1;
+        }
+        
+        .login-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
+            input::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+            }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <div id="bgSlider"></div>
+    <div class="overlay"></div>
+
+    <div class="login-card p-12 text-center text-white">
+        <div class="flex flex-col items-center mb-10">
+            <div class="relative mb-8 flex justify-center items-center">
+
+                <div class="absolute w-32 h-32 bg-blue-500/20 blur-3xl rounded-full"></div>
+
+                <img src="img/LOGO.jpg" alt="Logo"
+                     class="relative w-32 h-32 rounded-3xl border-2 border-white/20 shadow-2xl object-cover">
+
+            </div>
+            <h1 class="text-3xl font-black tracking-tight">مرحباً بك</h1>
+            <p class="text-white/60 text-sm mt-2 font-bold">Graduation Projects Portal</p>
+        </div>
+
+        <div class="space-y-6 text-right">
+            <div>
+                <label class="block text-xs font-bold text-white/50 mb-2 mr-2">اسم المستخدم</label>
+                <input type="text" id="username" placeholder="أدخل اسمك هنا..." class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500 transition-all">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-white/50 mb-2 mr-2">كلمة المرور</label>
+                <input type="password" id="password" placeholder="••••••••" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500 transition-all">
+            </div>
+
+            <button onclick="login()" class="w-full py-5 bg-blue-600 hover:bg-blue-700 rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-600/20 active:scale-95">
+                تسجيل الدخول
+            </button>
+
+            <div class="mt-6 text-center">
+                <p class="text-white/70 text-sm font-bold">
+                    ليس لديك حساب؟
+                    <a href="SignUp.html" class="text-blue-400 hover:text-blue-300 underline transition-colors">إنشاء حساب جديد</a>
+                </p>
+            </div>
+            <div id="errorMsg" class="text-red-500 text-sm font-bold text-center mt-2"></div>
+        </div>
+
+        <div class="mt-10 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">
+            Graduation Projects Portal
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            'img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg',
+            'img/img4.jpg', 'img/img5.jpg', 'img/img6.jpg',
+            'img/img7.jpg', 'img/img8.jpg', 'img/img9.jpg',
+            'img/img10.jpg'
+        ];
+
+        let currentImg = 0;
+        const bg = document.getElementById('bgSlider');
+
+        function changeBackground() {
+            bg.style.backgroundImage = `url('${images[currentImg]}')`;
+            currentImg = (currentImg + 1) % images.length;
+        }
+
+        changeBackground();
+        setInterval(changeBackground, 5000);
+
+        async function login() {
+            const userVal = document.getElementById('username').value;
+            const passVal = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.innerText = "";
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ Username: userVal, Password: passVal })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem("loggedIn", "true");
+                    localStorage.setItem("role", data.role);
+                    localStorage.setItem("userName", data.name);
+                    if (data.userId) {
+                        localStorage.setItem("userId", data.userId);
+                    }
+                    window.location.href = data.redirectUrl;
+                } else {
+                    const errorData = await response.json();
+                    errorMsg.innerText = errorData.message || "فشل تسجيل الدخول";
+                }
+            } catch (err) {
+                console.error(err);
+                errorMsg.innerText = "حدث خطأ أثناء الاتصال بالخادم";
+            }
+        }
+    </script>
+</body>
+</html>

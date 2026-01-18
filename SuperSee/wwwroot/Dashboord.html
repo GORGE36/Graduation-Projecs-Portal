@@ -1,0 +1,525 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Graduation Projects Portal — لوحة المنسق خلدون</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Inter, ui-sans-serif, system-ui;
+            overflow-x: hidden;
+        }
+
+        #bgSlider {
+            min-height: 100vh;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.5s ease-in-out;
+            background-attachment: fixed;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 1.5rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background: rgba(100,116,139,.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .student-item:first-child {
+            border-right: 4px solid #4f46e5;
+            background: rgba(79, 70, 229, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <script>
+        if (localStorage.getItem("loggedIn") !== "true" || localStorage.getItem("role") !== "Coordinator") {
+            window.location.href = "Login.html";
+        }
+    </script>
+
+    <div id="bgSlider" class="flex">
+        <aside class="w-80 glass-nav p-6 flex flex-col sticky top-0 h-screen">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="flex items-center justify-center p-4">
+                    <img src="img/LOGO.jpg"
+                         alt="Coordinator Logo"
+                         class="w-12 h-12 rounded-lg object-cover shadow-md border border-white/10">
+                    <span class="mr-3 font-bold text-white text-lg"></span>
+                </div>
+                <div>
+                    <div class="text-lg font-bold text-slate-800 tracking-tighter">Graduation Projects Portal</div>
+                    <div class="text-[10px] text-slate-600 font-bold uppercase tracking-widest">Coordinator Panel</div>
+                </div>
+            </div>
+
+            <nav class="flex-1 space-y-2">
+                <button data-view="overview" class="w-full text-right py-3 px-4 rounded-xl bg-white/40 shadow-sm transition-all font-bold text-slate-700"> الصفحة الرئيسية</button>
+                <button data-view="teams" class="w-full text-right py-3 px-4 rounded-xl hover:bg-white/40 transition-all font-bold text-slate-700">تشكيل الفرق</button>
+                <button data-view="lifecycle" class="w-full text-right py-3 px-4 rounded-xl hover:bg-white/40 transition-all font-bold text-slate-700">مراحل المشروع</button>
+                <button data-view="reports" class="w-full text-right py-3 px-4 rounded-xl hover:bg-white/40 transition-all font-bold text-slate-700">التقارير والإشعارات</button>
+                <button data-view="settings" class="w-full text-right py-3 px-4 rounded-xl hover:bg-white/40 transition-all font-bold text-slate-700">الإعدادات</button>
+            </nav>
+
+            <button id="logoutBtn" class="mt-auto w-12 h-12 bg-yellow-500 hover:bg-red-600 text-white rounded-2xl flex items-center justify-center shadow-lg transition-all self-end transform hover:rotate-12">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
+                </svg>
+            </button>
+        </aside>
+
+        <main class="flex-1 p-8 overflow-auto">
+            <header class="flex items-center justify-between mb-8 gap-4">
+                <div class="glass-card p-4 flex-1">
+                    <h1 id="pageTitle" class="text-2xl font-black text-slate-900 italic">الصفحة الرئيسية</h1>
+                    <p class="text-sm font-medium text-slate-600 italic leading-relaxed" id="welcomeMsg">أهلاً بك خلدون، بانتظار تشكيل فرق المبدعين</p>
+                </div>
+                <div class="flex items-center gap-3 glass-card p-3">
+                    <input type="text" placeholder="ابحث عن مشروع..." class="bg-white/50 border-none rounded-lg px-4 py-2 outline-none w-64 font-medium">
+                    <button class="bg-indigo-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-indigo-700 transition-all">بحث</button>
+                </div>
+            </header>
+
+            <section id="overview" class="space-y-6">
+                <div class="grid grid-cols-4 gap-6">
+                    <div class="glass-card p-6 shadow-lg"><div class="text-sm font-bold text-slate-500 uppercase tracking-tighter">عدد المشاريع</div><div class="text-4xl font-black mt-2 text-indigo-700">128</div></div>
+                    <div class="glass-card p-6 shadow-lg"><div class="text-sm font-bold text-slate-500 uppercase tracking-tighter">الفرق النشطة</div><div class="text-4xl font-black mt-2 text-emerald-600">34</div></div>
+                    <div class="glass-card p-6 shadow-lg"><div class="text-sm font-bold text-slate-500 uppercase tracking-tighter">مشرفون مُعينون</div><div class="text-4xl font-black mt-2 text-slate-800">22</div></div>
+                    <div class="glass-card p-6 shadow-lg"><div class="text-sm font-bold text-slate-500 uppercase tracking-tighter text-rose-600">مهام متأخرة</div><div class="text-4xl font-black mt-2 text-rose-600">5</div></div>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="font-bold mb-4">نشاط الفرق الأخير</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center font-bold"><span>فريق A (نظام مكتبة)</span> <div class="w-1/2 bg-white/30 h-3 rounded-full overflow-hidden"><div class="bg-indigo-500 h-full w-[65%]"></div></div></div>
+                        <div class="flex justify-between items-center font-bold"><span>فريق B (تطبيق واجبات)</span> <div class="w-1/2 bg-white/30 h-3 rounded-full overflow-hidden"><div class="bg-amber-500 h-full w-[35%]"></div></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="teams" class="hidden space-y-6">
+                <div class="glass-card p-8 shadow-2xl border-t-8 border-indigo-600">
+                    <h3 class="text-2xl font-black mb-8 italic">تشكيل وإدارة الفرق</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-black text-slate-700 mb-2">اسم المشروع</label>
+                                <input id="coordTeamName" type="text" placeholder="مثال: تطبيق ذكاء اصطناعي" class="w-full p-4 rounded-xl bg-white/50 border border-white outline-none font-bold text-indigo-900">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-black text-slate-700 mb-2">اختيار المشرف</label>
+                                <select id="coordSupervisor" class="w-full p-4 rounded-xl bg-white/50 border border-white outline-none font-bold text-indigo-900 cursor-pointer">
+                                    <option value="">-- اختر المشرف المسؤول --</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-black text-slate-700 mb-2 text-indigo-600">إضافة طالب جديد للفريق</label>
+                                <div class="flex gap-2">
+                                    <select id="studentSelect" class="flex-1 p-4 rounded-xl bg-white/50 border border-white outline-none font-bold text-slate-800">
+                                        <option value="">-- اختر الطالب من القائمة --</option>
+                                    </select>
+                                    <button onclick="addStudentToList()" class="px-6 bg-indigo-600 text-white rounded-xl font-black text-xl hover:bg-indigo-700 transition-all">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/20 p-6 rounded-[2rem] border border-white/40 shadow-inner">
+                            <h4 class="text-sm font-black text-slate-600 mb-4 uppercase tracking-widest flex justify-between">
+                                أعضاء الفريق (أول طالب هو القائد)
+                                <span id="memberCount" class="text-indigo-600">0</span>
+                            </h4>
+                            <ul id="memberList" class="space-y-3">
+                            </ul>
+                            <div id="noMembers" class="text-center py-10 text-slate-400 italic font-bold">لا يوجد أعضاء في هذا الفريق بعد</div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 mt-10 border-t border-white/30 pt-8">
+                        <button onclick="coordCreateTeam()" class="flex-1 bg-emerald-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl shadow-emerald-200 hover:bg-emerald-700 hover:-translate-y-1 transition-all">
+                            Create And Send To Supervisor
+                        </button>
+
+                        <button onclick="clearBuilder()" class="px-10 bg-rose-50 text-rose-600 rounded-2xl font-black hover:bg-rose-100 transition-all">
+                            إلغاء الفريق
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 shadow-xl">
+                    <h3 class="text-xl font-black mb-6 italic">الفرق المنشأة وحالاتها</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-right border-collapse">
+                            <thead>
+                                <tr class="text-slate-500 border-b border-white/20">
+                                    <th class="pb-4 font-bold">اسم الفريق</th>
+                                    <th class="pb-4 font-bold">المشرف</th>
+                                    <th class="pb-4 font-bold">المشروع</th>
+                                    <th class="pb-4 font-bold">الأعضاء</th>
+                                    <th class="pb-4 font-bold">الحالة</th>
+                                    <th class="pb-4 font-bold">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="coordinatorTeamsList">
+                                <tr>
+                                    <td colspan="6" class="py-10 text-center text-slate-400 italic">جاري تحميل الفرق...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Swap Members Interface -->
+                <div class="glass-card p-8 shadow-xl">
+                    <h3 class="text-xl font-black mb-6 italic">تبديل أعضاء بين الفرق</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <label class="block text-sm font-black text-slate-700">الفريق الأول</label>
+                            <select id="swapTeam1" onchange="loadSwapStudents(1)" class="w-full p-4 rounded-xl bg-white/50 border border-white outline-none font-bold text-indigo-900">
+                                <option value="">-- اختر الفريق الأول --</option>
+                            </select>
+                            <select id="swapStudent1" class="w-full p-4 rounded-xl bg-white/50 border border-white outline-none font-bold text-slate-800">
+                                <option value="">-- اختر الطالب الأول --</option>
+                            </select>
+                        </div>
+                        <div class="space-y-4">
+                            <label class="block text-sm font-black text-slate-700">الفريق الثاني</label>
+                            <select id="swapTeam2" onchange="loadSwapStudents(2)" class="w-full p-4 rounded-xl bg-white/50 border border-white outline-none font-bold text-indigo-900">
+                                <option value="">-- اختر الفريق الثاني --</option>
+                            </select>
+                            <select id="swapStudent2" class="w-full p-4 rounded-xl bg-white/50 border border-white outline-none font-bold text-slate-800">
+                                <option value="">-- اختر الطالب الثاني --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="swapMembers()" class="w-full mt-6 bg-indigo-600 text-white py-4 rounded-2xl font-black text-lg shadow-lg hover:bg-indigo-700 transition-all">
+                        تأفيذ عملية التبديل
+                    </button>
+                </div>
+            </section>
+
+            <section id="lifecycle" class="hidden glass-card p-10"><h2 class="font-black text-2xl italic text-slate-800">تتبع مراحل المشروع قيد المراجعة...</h2></section>
+            <section id="reports" class="hidden glass-card p-10"><h2 class="font-black text-2xl italic text-slate-800">التقارير والإحصائيات الشاملة...</h2></section>
+            <section id="settings" class="hidden glass-card p-10"><h2 class="font-black text-2xl italic text-slate-800">إعدادات النظام والأمان...</h2></section>
+
+        </main>
+    </div>
+            <script>
+                let currentMembers = [];
+                let allTeams = []; // Cache for swap functionality
+                
+                (function () {
+                    const images = ['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg', 'img/img4.jpg', 'img/img5.jpg'];
+                    let current = 0;
+                    function changeBg() {
+                        const slider = document.getElementById('bgSlider');
+                        if (slider) {
+                            slider.style.backgroundImage = "url('" + images[current] + "')";
+                            current = (current + 1) % images.length;
+                        }
+                    }
+                    setInterval(changeBg, 4000);
+                    changeBg();
+                })();
+                
+                const sections = ['overview', 'teams', 'lifecycle', 'reports', 'settings'];
+                document.querySelectorAll('nav button').forEach(btn => {
+                    btn.onclick = () => {
+                        const view = btn.getAttribute('data-view');
+                        if (view) {
+                            sections.forEach(s => {
+                                const sectionEl = document.getElementById(s);
+                                if (sectionEl) sectionEl.classList.add('hidden');
+                            });
+                            const targetSection = document.getElementById(view);
+                            if (targetSection) targetSection.classList.remove('hidden');
+
+                            document.getElementById('pageTitle').textContent = btn.textContent;
+                            document.querySelectorAll('nav button').forEach(b => b.classList.remove('bg-white/40', 'shadow-sm', 'border'));
+                            btn.classList.add('bg-white/40', 'shadow-sm', 'border', 'border-white/30');
+                        }
+                    };
+                });
+                
+                async function loadAvailableStudents() {
+                    try {
+                        const studentResp = await fetch('/api/coordinator/available-students');
+                        const students = await studentResp.json();
+                        const studentSelect = document.getElementById("studentSelect");
+                        if (studentSelect) {
+                            studentSelect.innerHTML = '<option value="">-- اختر الطالب من القائمة --</option>';
+                            students.forEach(s => {
+                                studentSelect.innerHTML += `<option value="${s.studentId}">${s.studentName}</option>`;
+                            });
+                        }
+                        
+                        const superResp = await fetch('/api/coordinator/supervisors');
+                        const supervisors = await superResp.json();
+                        const superSelect = document.getElementById("coordSupervisor");
+                        if (superSelect) {
+                            superSelect.innerHTML = '<option value="">-- اختر المشرف المسؤول --</option>';
+                            supervisors.forEach(sup => {
+                                superSelect.innerHTML += `<option value="${sup.supervisorId}">${sup.supervisorName}</option>`;
+                            });
+                        }
+                        
+                        loadCoordinatorTeams();
+                    } catch (err) {
+                        console.error("خطأ في جلب البيانات:", err);
+                    }
+                }
+
+                async function loadCoordinatorTeams() {
+                    try {
+                        const resp = await fetch('/api/coordinator/teams');
+                        const teams = await resp.json();
+                        allTeams = teams; // Store globally
+                        const list = document.getElementById('coordinatorTeamsList');
+                        if (!list) return;
+
+                        if (teams.length === 0) {
+                            list.innerHTML = '<tr><td colspan="6" class="py-10 text-center text-slate-400 italic">لا يوجد فرق منشأة بعد</td></tr>';
+                            return;
+                        }
+
+                        const statusMap = { 0: 'Pending', 1: 'Accepted', 2: 'Refused' };
+                        const statusColor = { 0: 'text-amber-600', 1: 'text-emerald-600', 2: 'text-rose-600' };
+
+                        list.innerHTML = teams.map(t => `
+                            <tr class="border-b border-white/10 hover:bg-white/5 transition-all">
+                                <td class="py-4 font-bold text-slate-800">${t.teamName}</td>
+                                <td class="py-4 text-slate-600 font-medium">${t.supervisorName}</td>
+                                <td class="py-4 text-slate-600 font-medium">${t.projectTitle}</td>
+                                <td class="py-4 text-slate-600 font-medium">
+                                    <div class="flex flex-col gap-1">
+                                        ${t.members.map(m => `<span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-1 rounded-md font-bold">${m.studentName}</span>`).join('')}
+                                    </div>
+                                </td>
+                                <td class="py-4 font-black ${statusColor[t.assignmentStatus] || ''}">${statusMap[t.assignmentStatus] || t.assignmentStatus}</td>
+                                <td class="py-4">
+                                    <button onclick="deleteTeam('${t.teamId}')" class="bg-rose-100 text-rose-600 px-3 py-1 rounded-lg font-bold hover:bg-rose-200 transition-all">حذف</button>
+                                </td>
+                            </tr>
+                        `).join('');
+
+                        // Populate swap dropdowns
+                        const s1 = document.getElementById('swapTeam1');
+                        const s2 = document.getElementById('swapTeam2');
+                        if (s1 && s2) {
+                            const options = '<option value="">-- اختر الفريق --</option>' + teams.map(t => `<option value="${t.teamId}">${t.teamName}</option>`).join('');
+                            s1.innerHTML = options;
+                            s2.innerHTML = options;
+                        }
+
+                    } catch (err) {
+                        console.error("Error loading teams:", err);
+                    }
+                }
+
+                function loadSwapStudents(num) {
+                    const teamId = document.getElementById(`swapTeam${num}`).value;
+                    const studentSelect = document.getElementById(`swapStudent${num}`);
+                    if (!studentSelect) return;
+
+                    if (!teamId) {
+                        studentSelect.innerHTML = '<option value="">-- اختر الطالب --</option>';
+                        return;
+                    }
+
+                    const team = allTeams.find(t => t.teamId === teamId);
+                    if (team) {
+                        studentSelect.innerHTML = '<option value="">-- اختر الطالب --</option>' + 
+                            team.members.map(m => `<option value="${m.studentId}">${m.studentName}</option>`).join('');
+                    }
+                }
+                
+                async function swapMembers() {
+                    const t1 = document.getElementById('swapTeam1').value;
+                    const s1 = document.getElementById('swapStudent1').value;
+                    const t2 = document.getElementById('swapTeam2').value;
+                    const s2 = document.getElementById('swapStudent2').value;
+
+                    if (!t1 || !s1 || !t2 || !s2) return alert("يرجى اختيار الفرق والطلاب أولاً");
+                    if (t1 === t2) return alert("لا يمكن التبديل داخل نفس الفريق");
+
+                    try {
+                        const response = await fetch('/api/coordinator/swap-members', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ team1Id: t1, student1Id: s1, team2Id: t2, student2Id: s2 })
+                        });
+                        const result = await response.json();
+                        if (response.ok) {
+                            alert("تم التبديل بنجاح!");
+                            loadCoordinatorTeams();
+                        } else {
+                            alert("خطأ: " + result.message);
+                        }
+                    } catch (err) { alert("خطأ في الاتصال بالسيرفر"); }
+                }
+                
+                function addStudentToList() {
+                    const select = document.getElementById('studentSelect');
+                    const studentId = select.value;
+                    const studentName = select.options[select.selectedIndex]?.text;
+
+                    if (studentId && studentId !== "") {
+                        if (currentMembers.find(m => m.id === studentId)) {
+                            alert("هذا الطالب مضاف بالفعل");
+                            return;
+                        }
+                        currentMembers.push({ id: studentId, name: studentName });
+                        renderMembers();
+                        select.value = ""; 
+                    }
+                }
+                
+                function renderMembers() {
+                    const list = document.getElementById('memberList');
+                    const noMembers = document.getElementById('noMembers');
+                    const count = document.getElementById('memberCount');
+
+                    if (!list) return;
+                    list.innerHTML = "";
+                    currentMembers.length === 0 ? noMembers?.classList.remove('hidden') : noMembers?.classList.add('hidden');
+                    if (count) count.textContent = currentMembers.length;
+
+                    currentMembers.forEach((m, idx) => {
+                        list.innerHTML += `
+                            <li class="student-item flex justify-between items-center p-3 bg-white/50 rounded-xl border border-white mb-2 shadow-sm">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-slate-800">${idx === 0 ? '(Leader) ' : ''}${m.name}</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="moveUp(${idx})" class="p-1 hover:bg-indigo-100 rounded text-indigo-600 ${idx === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${idx === 0 ? 'disabled' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <button onclick="moveDown(${idx})" class="p-1 hover:bg-indigo-100 rounded text-indigo-600 ${idx === currentMembers.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${idx === currentMembers.length - 1 ? 'disabled' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <button onclick="removeStudent(${idx})" class="text-rose-500 font-bold px-2 hover:bg-rose-100 rounded">✕</button>
+                                </div>
+                            </li>`;
+                    });
+                }
+
+                function clearBuilder() {
+                    if (confirm("هل تريد مسح الفريق الحالي؟")) {
+                        currentMembers = [];
+                        document.getElementById('coordTeamName').value = "";
+                        renderMembers();
+                        loadAvailableStudents();
+                    }
+                }
+
+                async function coordCreateTeam() {
+                    const name = document.getElementById('coordTeamName').value;
+                    const supervisorId = document.getElementById('coordSupervisor').value;
+                    if (!name || !supervisorId || currentMembers.length === 0) return alert("أكمل البيانات أولاً");
+
+                    const teamData = {
+                        teamName: name,
+                        projectTitle: name, // استخدام نفس الاسم كعنوان مبدئي
+                        projectDescription: "Created from dashboard",
+                        supervisorId: supervisorId,
+                        studentIds: currentMembers.map(m => m.id),
+                        teamLeaderId: currentMembers[0].id
+                    };
+
+                    try {
+                        const response = await fetch('/api/coordinator/create-team', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(teamData)
+                        });
+                        const result = await response.json();
+                        if (response.ok) {
+                            alert("تم إنشاء الفريق بنجاح!");
+                            currentMembers = [];
+                            document.getElementById('coordTeamName').value = "";
+                            renderMembers();
+                             loadAvailableStudents();
+                        } else {
+                            alert("خطأ: " + result.message);
+                        }
+                    } catch (err) { alert("خطأ في الاتصال بالسيرفر"); }
+                }
+
+                async function deleteTeam(teamId) {
+                    await loadAvailableStudents();
+                    if (!confirm("هل أنت متأكد من حذف هذا الفريق؟ الطلاب سيصبحون متاحين مرة أخرى.")) return;
+
+                    try {
+                        const response = await fetch(`/api/coordinator/delete-team/${teamId}`, {
+                            method: 'DELETE'
+                        });
+                        const result = await response.json();
+                        if (response.ok) {
+                            alert("تم حذف الفريق بنجاح");
+                            loadAvailableStudents(); // Re-loads both students and teams list
+                        } else {
+                            alert("خطأ: " + result.message);
+                        }
+                    } catch (err) {
+                        alert("خطأ في الاتصال بالسيرفر");
+                    }
+                }
+
+                function removeStudent(idx) {
+                    currentMembers.splice(idx, 1);
+                    renderMembers();
+                }
+
+                function moveUp(idx) {
+                    if (idx > 0) {
+                        const temp = currentMembers[idx];
+                        currentMembers[idx] = currentMembers[idx - 1];
+                        currentMembers[idx - 1] = temp;
+                        renderMembers();
+                    }
+                }
+
+                function moveDown(idx) {
+                    if (idx < currentMembers.length - 1) {
+                        const temp = currentMembers[idx];
+                        currentMembers[idx] = currentMembers[idx + 1];
+                        currentMembers[idx + 1] = temp;
+                        renderMembers();
+                    }
+                }
+
+                document.getElementById('logoutBtn').onclick = () => { localStorage.clear(); window.location.href = "Login.html"; };
+
+                window.onload = loadAvailableStudents;
+            </script>
+</body>
+</html>

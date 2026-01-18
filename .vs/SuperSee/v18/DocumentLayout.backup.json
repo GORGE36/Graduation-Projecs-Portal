@@ -1,0 +1,253 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\wwwroot\\supervisordash.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\wwwroot\\supervisordash.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\wwwroot\\studentdash.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\wwwroot\\studentdash.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\wwwroot\\dashboord.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\wwwroot\\dashboord.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\wwwroot\\login.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\wwwroot\\login.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\wwwroot\\signup.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\wwwroot\\signup.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\wwwroot\\signup.html||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\wwwroot\\signup.html||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\coordinator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\coordinator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\controllers\\teamscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\controllers\\teamscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\coordinatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\coordinatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\controllers\\supervisorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\controllers\\supervisorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|c:\\users\\user\\desktop\\fainally\\supersee\\supersee\\supersee.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7B6CA286-793C-4BC1-AC4B-7E328040804B}|SuperSee\\SuperSee.csproj|solutionrelative:supersee\\supersee.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\10.0.101\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentDash.html",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\StudentDash.html",
+              "RelativeDocumentMoniker": "SuperSee\\wwwroot\\StudentDash.html",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\StudentDash.html",
+              "RelativeToolTip": "SuperSee\\wwwroot\\StudentDash.html",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAADIAAACUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-14T17:55:05.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Signup.html",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\Signup.html",
+              "RelativeDocumentMoniker": "SuperSee\\wwwroot\\Signup.html",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\Signup.html",
+              "RelativeToolTip": "SuperSee\\wwwroot\\Signup.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-14T17:54:40.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Signup.html",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\Signup.html",
+              "RelativeDocumentMoniker": "SuperSee\\wwwroot\\Signup.html",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\Signup.html",
+              "RelativeToolTip": "SuperSee\\wwwroot\\Signup.html",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAAAH0AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-14T17:45:15.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CoordinatorService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\CoordinatorService.cs",
+              "RelativeDocumentMoniker": "SuperSee\\CoordinatorService.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\CoordinatorService.cs",
+              "RelativeToolTip": "SuperSee\\CoordinatorService.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:17:15.627Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Coordinator.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Coordinator.cs",
+              "RelativeDocumentMoniker": "SuperSee\\Coordinator.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Coordinator.cs",
+              "RelativeToolTip": "SuperSee\\Coordinator.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAhwCcAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:15:52.27Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TeamsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Controllers\\TeamsController.cs",
+              "RelativeDocumentMoniker": "SuperSee\\Controllers\\TeamsController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Controllers\\TeamsController.cs",
+              "RelativeToolTip": "SuperSee\\Controllers\\TeamsController.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAlwEoAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:01:08.101Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "StudentsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Controllers\\StudentsController.cs",
+              "RelativeDocumentMoniker": "SuperSee\\Controllers\\StudentsController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Controllers\\StudentsController.cs",
+              "RelativeToolTip": "SuperSee\\Controllers\\StudentsController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:00:32.082Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SupervisorDash.html",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\SupervisorDash.html",
+              "RelativeDocumentMoniker": "SuperSee\\wwwroot\\SupervisorDash.html",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\SupervisorDash.html",
+              "RelativeToolTip": "SuperSee\\wwwroot\\SupervisorDash.html",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAE0AAAC3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-14T16:40:06.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SupervisorsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Controllers\\SupervisorsController.cs",
+              "RelativeDocumentMoniker": "SuperSee\\Controllers\\SupervisorsController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Controllers\\SupervisorsController.cs",
+              "RelativeToolTip": "SuperSee\\Controllers\\SupervisorsController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T13:33:40.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SuperSee.csproj",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\SuperSee.csproj",
+              "RelativeDocumentMoniker": "SuperSee\\SuperSee.csproj",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\SuperSee.csproj",
+              "RelativeToolTip": "SuperSee\\SuperSee.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-14T13:33:36.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Microsoft.PackageDependencyResolution.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\10.0.101\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\10.0.101\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\10.0.101\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\10.0.101\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ViewState": "AgIAAPsAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-01-13T19:48:12.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Program.cs",
+              "RelativeDocumentMoniker": "SuperSee\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\Program.cs",
+              "RelativeToolTip": "SuperSee\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T19:01:52.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboord.html",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\Dashboord.html",
+              "RelativeDocumentMoniker": "SuperSee\\wwwroot\\Dashboord.html",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\Dashboord.html",
+              "RelativeToolTip": "SuperSee\\wwwroot\\Dashboord.html",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAEkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-13T19:01:22.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.html",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\Login.html",
+              "RelativeDocumentMoniker": "SuperSee\\wwwroot\\Login.html",
+              "ToolTip": "C:\\Users\\user\\Desktop\\fainally\\SuperSee\\SuperSee\\wwwroot\\Login.html",
+              "RelativeToolTip": "SuperSee\\wwwroot\\Login.html",
+              "ViewState": "AgIAADEAAAAAAAAAAAAAAEAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-13T18:59:03.768Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
