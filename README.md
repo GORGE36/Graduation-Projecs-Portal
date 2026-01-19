@@ -85,12 +85,8 @@ git clone https://github.com/GORGE36/Graduation-Projects-Portal.git
 3) Restore dependencies:
  dotnet restore
 
-4) Apply database migrations: 
- dotnet ef database update
-
-
 5) Run the application: 
- dotnet run
+ dotnet run --project SuperSee
 
 ## Usage
 
