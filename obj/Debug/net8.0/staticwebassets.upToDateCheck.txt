@@ -1,0 +1,20 @@
+wwwroot\uploads\b20f07c4-392c-4a7c-b307-8f5014a4e921\8cdd8f33-ae30-4e69-8181-2fd735ad292c_Ruth Ebach - Trügende Prophetenworte_ Zum Umgang mit falscher und unerfüllter Prophetie im Alten Testament im Kontext altorientalischer und (2023, Mohr Siebeck) - libgen.li.pdf
+wwwroot\uploads\32515287-a038-4a4f-a6a8-f46278837270\c831bf74-b995-438a-bb57-36f9b3d1ab44_ilovepdf_merged.pdf
+wwwroot\uploads\32515287-a038-4a4f-a6a8-f46278837270\1caadf83-d47f-46fb-a180-a61379ef9e11_ilovepdf_merged.pdf
+wwwroot\SupervisorDash.html
+wwwroot\StudentDash.html
+wwwroot\Signup.html
+wwwroot\Login.html
+wwwroot\img\LOGO.jpg
+wwwroot\img\img9.jpg
+wwwroot\img\img8.jpg
+wwwroot\img\img7.jpg
+wwwroot\img\img6.jpg
+wwwroot\img\img5.jpg
+wwwroot\img\img4.jpg
+wwwroot\img\img3.jpg
+wwwroot\img\img2.jpg
+wwwroot\img\img10.jpg
+wwwroot\img\img1.jpg
+wwwroot\HeadOfDepartment.html
+wwwroot\Dashboord.html
