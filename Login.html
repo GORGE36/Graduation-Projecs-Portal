@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول والاستعادة — Graduation Projects Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* تعديل الخلفية لتصبح الزركشة والخطوط الهندسية أكثر وضوحاً وبروزاً */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #ffffff;
+            background-image: radial-gradient(circle at 15% 25%, rgba(12, 8, 60, 0.08) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(12, 8, 60, 0.06) 0%, transparent 45%), radial-gradient(rgba(12, 8, 60, 0.08) 1.5px, transparent 0), radial-gradient(rgba(12, 8, 60, 0.05) 2.5px, transparent 0), linear-gradient(45deg, transparent 45%, rgba(12, 8, 60, 0.03) 46%, rgba(12, 8, 60, 0.03) 54%, transparent 55%), linear-gradient(-45deg, transparent 45%, rgba(12, 8, 60, 0.03) 46%, rgba(12, 8, 60, 0.03) 54%, transparent 55%);
+            background-size: 100% 100%, 100% 100%, 28px 28px, 56px 56px, 28px 28px, 28px 28px;
+            background-position: 0 0, 0 0, 0 0, 14px 14px, 0 0, 0 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        /* كارد الكحلي الملكي الفاخر المعتمد */
+        .luxury-login-card {
+            background: #0c083c;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 8px solid #f59e0b; /* خط علوي ذهبي متوهج */
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 60px -15px rgba(12, 8, 60, 0.35);
+            width: 100%;
+            max-width: 460px;
+            transition: all 0.4s ease-in-out;
+        }
+
+        /* حقول الإدخال متباينة وراقية جداً داخل الكارد الداكن */
+        .custom-input {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #ffffff !important;
+            transition: all 0.3s ease;
+        }
+
+        .custom-input:focus {
+            background-color: rgba(255, 255, 255, 0.15) !important;
+            border-color: #f59e0b !important;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15) !important;
+            outline: none;
+        }
+
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* الزر الرئيسي يعتمد اللون الذهبي الفخم فوق الكارد الكحلي */
+        .btn-gold-main {
+            background-color: #f59e0b;
+            color: #0c083c;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-gold-main:hover {
+            background-color: #ffffff;
+            color: #0c083c;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* تخصيص السكرول بار */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(12, 8, 60, 0.02);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-full py-12 px-4">
+
+<div class="luxury-login-card p-8 sm:p-10 text-center my-auto">
+
+    <!-- الهيدر وشعار البوابة -->
+    <div class="flex flex-col items-center mb-8">
+        <img src="img/LOGO.jpg" alt="Logo"
+             class="w-24 h-24 rounded-2xl object-cover shadow-2xl border border-white/10 bg-white mb-4">
+
+        <h1 class="text-2xl font-black text-white" id="authTitle">مرحباً بك</h1>
+        <p class="text-amber-500 text-xs mt-1 font-black tracking-wide uppercase" id="authSubtitle">Graduation Projects Portal</p>
+    </div>
+
+    <div class="text-right">
+
+        <!-- 1. واجهة تسجيل الدخول -->
+        <div id="viewLogin" class="space-y-5">
+            <div>
+                <label class="block text-xs font-black text-slate-300 mb-2 mr-1">اسم المستخدم</label>
+                <input type="text" id="username" placeholder="أدخل اسم المستخدم هنا..."
+                       class="w-full p-4 rounded-xl custom-input font-bold text-sm">
+            </div>
+
+            <div>
+                <label class="block text-xs font-black text-slate-300 mb-2 mr-1">كلمة المرور</label>
+                <input type="password" id="password" placeholder="••••••••"
+                       class="w-full p-4 rounded-xl custom-input text-sm" dir="ltr">
+            </div>
+
+            <button onclick="login()" class="w-full py-4 btn-gold-main rounded-xl font-black text-base shadow-md active:scale-95">
+                تسجيل الدخول
+            </button>
+
+            <div class="mt-6 text-center space-y-3 pt-2">
+                <p class="text-slate-400 text-xs font-bold">
+                    ليس لديك حساب؟
+                    <a href="SignUp.html" class="text-amber-500 hover:text-white font-black underline transition-colors">إنشاء حساب جديد</a>
+                </p>
+                <p class="text-xs">
+                    <button type="button" onclick="showForgotPasswordView()" class="text-slate-400 hover:text-slate-200 font-bold transition-colors underline focus:outline-none">
+                        نسيت كلمة المرور؟
+                    </button>
+                </p>
+            </div>
+        </div>
+
+        <!-- 2. واجهة طلب الـ OTP -->
+        <div id="viewForgotPassword" class="hidden space-y-5">
+            <p class="text-xs text-slate-300 text-center font-bold leading-relaxed bg-white/5 p-3 rounded-xl border border-white/5">
+                أدخل بريدك الإلكتروني الأكاديمي المسجل لإرسال رمز الاستعادة فوراً.
+            </p>
+            <div>
+                <label class="block text-xs font-black text-slate-300 mb-2 mr-1">البريد الإلكتروني الأكاديمي</label>
+                <input type="email" id="emailInput" placeholder="example@university.edu.jo"
+                       class="w-full p-4 rounded-xl custom-input font-bold text-sm text-left" dir="ltr">
+            </div>
+
+            <button onclick="sendResetCode()" class="w-full py-4 btn-gold-main rounded-xl font-black text-base shadow-md active:scale-95">
+                إرسال رمز التحقق
+            </button>
+
+            <div class="mt-6 text-center pt-3 border-t border-white/5">
+                <button type="button" onclick="showLoginView()" class="text-amber-500 hover:text-white text-xs font-black underline focus:outline-none">
+                    العودة لشاشة الدخول
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. واجهة تعيين كلمة المرور الجديدة -->
+        <div id="viewVerifyOTP" class="hidden space-y-5">
+            <div class="bg-emerald-550/10 border border-emerald-500/20 p-3 rounded-xl text-center">
+                <p class="text-xs text-emerald-400 font-black">
+                    📥 تم إرسال الرمز بنجاح إلى بريدك الإلكتروني الأكاديمي.
+                </p>
+            </div>
+
+            <div>
+                <label class="block text-xs font-black text-slate-300 mb-2 mr-1">رمز التحقق (OTP)</label>
+                <input type="text" id="otpInput" placeholder="000000"
+                       class="w-full p-4 rounded-xl custom-input text-center tracking-[0.4em] font-black text-lg" dir="ltr">
+            </div>
+
+            <div>
+                <label class="block text-xs font-black text-slate-300 mb-2 mr-1">كلمة المرور الجديدة</label>
+                <input type="password" id="newPassword" placeholder="••••••••"
+                       class="w-full p-4 rounded-xl custom-input text-sm" dir="ltr">
+            </div>
+
+            <button onclick="verifyAndResetPassword()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-black text-base shadow transition-all active:scale-95">
+                تأكيد وتحديث كلمة المرور
+            </button>
+
+            <div class="mt-6 text-center pt-3 border-t border-white/5">
+                <button type="button" onclick="showLoginView()" class="text-amber-500 hover:text-rose-400 text-xs font-black underline focus:outline-none">
+                    إلغاء والعودة للرئيسية
+                </button>
+            </div>
+        </div>
+
+        <!-- رسائل النظام والتنبيهات -->
+        <div id="globalMsg" class="text-rose-400 text-xs font-black text-center mt-4"></div>
+    </div>
+
+    <!-- تذييل المنصة المعتمد -->
+    <div class="mt-8 text-[10px] text-slate-500 font-black uppercase tracking-widest border-t border-white/5 pt-4">
+        Graduation Projects Portal
+    </div>
+</div>
+
+<!-- كود الـ JavaScript البرمجي الثابت -->
+<script>
+    function clearMsg() {
+        const msg = document.getElementById('globalMsg');
+        msg.innerText = "";
+        msg.className = "text-rose-400 text-xs font-black text-center mt-4";
+    }
+
+    function showLoginView() {
+        clearMsg();
+        document.getElementById('viewLogin').classList.remove('hidden');
+        document.getElementById('viewForgotPassword').classList.add('hidden');
+        document.getElementById('viewVerifyOTP').classList.add('hidden');
+
+        document.getElementById('authTitle').innerText = "مرحباً بك";
+        document.getElementById('authSubtitle').innerText = "Graduation Projects Portal";
+    }
+
+    function showForgotPasswordView() {
+        clearMsg();
+        document.getElementById('viewLogin').classList.add('hidden');
+        document.getElementById('viewForgotPassword').classList.remove('hidden');
+        document.getElementById('viewVerifyOTP').classList.add('hidden');
+
+        document.getElementById('authTitle').innerText = "استعادة الحساب";
+        document.getElementById('authSubtitle').innerText = "البحث عن طريق البريد";
+    }
+
+    function showOTPView() {
+        clearMsg();
+        document.getElementById('viewLogin').classList.add('hidden');
+        document.getElementById('viewForgotPassword').classList.add('hidden');
+        document.getElementById('viewVerifyOTP').classList.remove('hidden');
+
+        document.getElementById('authTitle').innerText = "تأكيد الحساب";
+        document.getElementById('authSubtitle').innerText = "إدخال كود الـ OTP";
+    }
+
+    async function login() {
+        const userVal = document.getElementById('username').value.trim();
+        const passVal = document.getElementById('password').value;
+        const globalMsg = document.getElementById('globalMsg');
+        clearMsg();
+
+        if (!userVal || !passVal) {
+            globalMsg.innerText = "يرجى تعبئة جميع الحقول المتاحة.";
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Username: userVal, Password: passVal })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem("loggedIn", "true");
+                localStorage.setItem("role", data.role);
+                localStorage.setItem("userName", data.name);
+                if (data.userId) {
+                    localStorage.setItem("userId", data.userId);
+                }
+                window.location.href = data.redirectUrl;
+            } else {
+                const errorData = await response.json();
+                globalMsg.innerText = errorData.message || "اسم المستخدم أو كلمة المرور غير صحيحة.";
+            }
+        } catch (err) {
+            console.error(err);
+            globalMsg.innerText = "حدث خطأ غير متوقع أثناء الاتصال بالخادم.";
+        }
+    }
+
+    async function sendResetCode() {
+        const email = document.getElementById('emailInput').value.trim();
+        const globalMsg = document.getElementById('globalMsg');
+        clearMsg();
+
+        if (!email) {
+            globalMsg.innerText = "يرجى كتابة البريد الإلكتروني الأكاديمي.";
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Email: email })
+            });
+
+            if (response.ok) {
+                showOTPView();
+            } else {
+                const errorData = await response.json();
+                globalMsg.innerText = errorData.message || "البريد المدخل غير مسجل بالمنظومة.";
+            }
+        } catch (err) {
+            console.error(err);
+            showOTPView();
+            globalMsg.className = "text-amber-500 text-[11px] font-black text-center mt-4";
+            globalMsg.innerText = "تنبيه للمطور: تم تفعيل العرض التجريبي (السيرفر غير متصل حالياً).";
+        }
+    }
+
+    async function verifyAndResetPassword() {
+        const code = document.getElementById('otpInput').value.trim();
+        const newPass = document.getElementById('newPassword').value.trim();
+        const globalMsg = document.getElementById('globalMsg');
+        clearMsg();
+
+        if (!code || !newPass) {
+            globalMsg.innerText = "يجب إدخال كود التحقق وكلمة المرور الجديدة معاً.";
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Code: code, NewPassword: newPass })
+            });
+
+            if (response.ok) {
+                globalMsg.className = "text-emerald-400 text-xs font-black text-center mt-4";
+                globalMsg.innerText = "تمت العملية بنجاح! جاري إعادتك لواجهة الدخول خلال لحظات...";
+                setTimeout(() => {
+                    showLoginView();
+                }, 2500);
+            } else {
+                const errorData = await response.json();
+                globalMsg.innerText = errorData.message || "الرمز الذي أدخلته غير صحيح أو منتهي الصلاحية.";
+            }
+        } catch (err) {
+            console.error(err);
+            globalMsg.innerText = "فشل تحديث البيانات، يرجى إعادة المحاولة لاحقاً.";
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>لوحة رئيس القسم — Graduation Projects Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            background-color: #ffffff;
+            /* الزركشة والشبكة الهندسية من ملف StudentDash.html المعتمد عندك بالحرف */
+            background-image: radial-gradient(rgba(0, 0, 80, 0.04) 1px, transparent 0), radial-gradient(rgba(0, 0, 80, 0.02) 2px, transparent 0), linear-gradient(45deg, transparent 46%, rgba(0, 0, 80, 0.015) 47%, rgba(0, 0, 80, 0.015) 53%, transparent 54%), linear-gradient(-45deg, transparent 46%, rgba(0, 0, 80, 0.015) 47%, rgba(0, 0, 80, 0.015) 53%, transparent 54%);
+            background-size: 20px 20px, 10px 10px, 80px 80px, 80px 80px;
+            background-position: 0 0, 0 0, 0 0, 0 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col antialiased">
+
+<header class="h-14 border-b border-slate-200/60 bg-white/80 backdrop-blur px-5 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
+    <div class="flex items-center gap-2.5">
+        <div class="w-2 h-2 rounded-full bg-indigo-600"></div>
+        <span class="font-bold text-slate-900 tracking-tight text-sm md:text-base">Graduation Projects Portal</span>
+        <span class="text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-100 px-2 py-0.5 rounded-md">لوحة رئيس القسم</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+        <div class="relative">
+            <button id="notifBell" class="relative p-1.5 text-slate-400 hover:text-slate-600 transition-colors">
+                <span id="notifBadge" class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-600 rounded-full border-2 border-white hidden"></span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+            </button>
+            <div id="notifDropdown" class="hidden absolute left-0 mt-2 w-80 bg-white shadow-2xl rounded-2xl border border-slate-200 overflow-hidden z-[9999] flex flex-col max-h-[400px]">
+                <div class="p-4 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
+                    <span class="font-bold text-slate-800 text-sm">التنبيهات</span>
+                    <button id="closeNotifDropdown" class="text-slate-400 hover:text-slate-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="notifList" class="overflow-y-auto p-2 space-y-2 flex-1">
+                    <div class="text-center py-4 text-slate-500 text-xs">لا توجد تنبيهات جديدة</div>
+                </div>
+            </div>
+        </div>
+        <div class="h-4 w-px bg-slate-200"></div>
+        <span class="text-sm font-bold text-slate-700">د. حمزه الكوفحي</span>
+    </div>
+</header>
+
+<div class="flex flex-1 pt-14 h-screen overflow-hidden">
+
+    <aside class="w-64 bg-slate-900/40 backdrop-blur-xl p-4 flex flex-col justify-between z-40 shrink-0 border-l border-slate-200/40 shadow-[1px_0_0_0_rgba(0,0,0,0.05)]">
+        <div class="space-y-6">
+
+            <div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-3">الرقابة والمتابعة العامة</div>
+                <div class="space-y-1">
+                    <button onclick="showTab('tab-overview')" id="btn-tab-overview" class="w-full flex items-center justify-between px-3.5 py-2 rounded-xl font-bold text-sm transition-all text-right bg-white/10 text-white shadow-sm">
+                        <span class="flex items-center gap-2.5">📊 الإحصائيات العامة</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-indigo-400"></div>
+                    </button>
+                    <button onclick="showTab('tab-supervisors')" id="btn-tab-supervisors" class="w-full flex items-center justify-between px-3.5 py-2 rounded-xl font-bold text-sm transition-all text-right text-slate-300 hover:bg-white/5 hover:text-white">
+                        <span class="flex items-center gap-2.5">👨‍🏫 تقدم المشرفين</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-slate-500/40"></div>
+                    </button>
+                    <button onclick="showTab('tab-students')" id="btn-tab-students" class="w-full flex items-center justify-between px-3.5 py-2 rounded-xl font-bold text-sm transition-all text-right text-slate-300 hover:bg-white/5 hover:text-white">
+                        <span class="flex items-center gap-2.5">🎓 تقدم الطلاب والفرق</span>
+                    </button>
+                    <button onclick="showTab('tab-coordinator')" id="btn-tab-coordinator" class="w-full flex items-center justify-between px-3.5 py-2 rounded-xl font-bold text-sm transition-all text-right text-slate-300 hover:bg-white/5 hover:text-white">
+                        <span class="flex items-center gap-2.5">⛓️ تتابع المنسق</span>
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-3">صلاحيات الإشراف واللجان</div>
+                <div class="space-y-1">
+                    <button onclick="showTab('tab-my-teams')" id="btn-tab-my-teams" class="w-full flex items-center justify-between px-3.5 py-2 rounded-xl font-bold text-sm transition-all text-right text-slate-300 hover:bg-white/5 hover:text-white">
+                        <span class="flex items-center gap-2.5">👥 الفرق التابعة لي</span>
+                    </button>
+                    <button onclick="showTab('tab-committees')" id="btn-tab-committees" class="w-full flex items-center justify-between px-3.5 py-2 rounded-xl font-bold text-sm transition-all text-right text-slate-300 hover:bg-white/5 hover:text-white">
+                        <span class="flex items-center gap-2.5">🧑‍⚖️ لجان مناقشاتي</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-3">
+            <div class="text-[10px] text-slate-400/60 text-center border-t border-slate-200/10 pt-3 font-medium">
+                نظام إدارة المشاريع FGMS+
+            </div>
+            <div class="px-2">
+                <button id="logoutBtn" class="w-full text-right text-rose-600 font-bold hover:text-rose-800 transition-colors text-sm py-1">
+                    إزالة / تسجيل الخروج
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-6 overflow-y-auto h-full pb-24">
+        <div class="max-w-4xl mx-auto space-y-6">
+
+            <div id="tab-overview" class="tab-pane space-y-4">
+                <h2 class="text-base font-bold text-slate-900 tracking-tight">📊 لوحة الرقابة الشاملة للقسم</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white border border-slate-200/60 p-4 rounded-xl shadow-sm">
+                        <span class="text-xs font-bold text-slate-400 block uppercase">أعضاء الهيئة التدريسية</span>
+                        <h2 class="text-2xl font-black text-indigo-600 mt-1" id="countSup">12</h2>
+                    </div>
+                    <div class="bg-white border border-slate-200/60 p-4 rounded-xl shadow-sm">
+                        <span class="text-xs font-bold text-slate-400 block uppercase">إجمالي المشاريع بالقسم</span>
+                        <h2 class="text-2xl font-black text-slate-800 mt-1" id="countProj">34</h2>
+                    </div>
+                    <div class="bg-white border border-slate-200/60 p-4 rounded-xl shadow-sm">
+                        <span class="text-xs font-bold text-slate-400 block uppercase">مشاريع تشرف عليها أنت</span>
+                        <h2 class="text-2xl font-black text-emerald-600 mt-1" id="countMyTeams">2</h2>
+                    </div>
+                    <div class="bg-white border border-slate-200/60 p-4 rounded-xl shadow-sm">
+                        <span class="text-xs font-bold text-slate-400 block uppercase">اللجان الموزعة</span>
+                        <h2 class="text-2xl font-black text-amber-600 mt-1" id="countCommittees">8</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-supervisors" class="tab-pane hidden space-y-4">
+                <h2 class="text-base font-bold text-slate-900 tracking-tight">👨‍🏫 تقارير متابعة أعضاء الهيئة التدريسية</h2>
+                <div class="bg-white border border-slate-200/60 p-5 rounded-xl shadow-sm space-y-3">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                        <div>
+                            <div class="font-bold text-sm text-slate-800">د. أحمد علي</div>
+                            <div class="text-xs text-slate-500 mt-1">عدد الفرق التابعة: 3 فرق — حالة التقارير المرفوعة: منتظمة</div>
+                        </div>
+                        <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-md text-xs font-bold">نشط جداً</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-students" class="tab-pane hidden space-y-4">
+                <h2 class="text-base font-bold text-slate-900 tracking-tight">🎓 جدول تقدم مشاريع التخرج بالقسم</h2>
+                <div class="bg-white border border-slate-200/60 rounded-xl shadow-sm overflow-hidden">
+                    <table class="w-full text-right text-xs md:text-sm">
+                        <thead class="bg-slate-50 border-b border-slate-200 text-slate-500">
+                        <tr>
+                            <th class="p-3.5 font-bold">اسم المشروع</th>
+                            <th class="p-3.5 font-bold">المشرف المسؤول</th>
+                            <th class="p-3.5 font-bold">المرحلة البرمجية الحالية</th>
+                            <th class="p-3.5 font-bold">نسبة الإنجاز</th>
+                        </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-700">
+                        <tr class="hover:bg-slate-50/60 transition-colors">
+                            <td class="p-3.5 font-bold text-slate-900">Johnny Jostar Portal</td>
+                            <td class="p-3.5 text-slate-600">د. حمزه الكوفحي (أنت)</td>
+                            <td class="p-3.5 text-indigo-600 font-medium">الـ Backend والربط كاملاً</td>
+                            <td class="p-3.5 font-bold text-emerald-600">90%</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tab-coordinator" class="tab-pane hidden space-y-4">
+                <h2 class="text-base font-bold text-slate-900 tracking-tight">⛓️ متابعة إجراءات منسق المشاريع</h2>
+                <div class="bg-white border border-slate-200/60 p-5 rounded-xl shadow-sm flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-800">منسق القسم: د. خلدون</h4>
+                        <p class="text-xs text-slate-500 mt-1">آخر إجراء معلن على النظام: تم الانتهاء من هيكلة وتوزيع مقيمي لجان المناقشة للمجموعات.</p>
+                    </div>
+                    <span class="text-xs font-bold bg-indigo-50 text-indigo-600 border border-indigo-100 px-3 py-1 rounded-md">متابع إدارياً</span>
+                </div>
+            </div>
+
+
+            <div id="tab-my-teams" class="tab-pane hidden space-y-4">
+                <h2 class="text-base font-bold text-slate-900 tracking-tight">👥 مجموعات تخرج تحت إشرافك المباشر</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white border border-slate-200/60 p-5 rounded-xl shadow-sm flex flex-col justify-between h-32">
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">بوابة مشاريع التخرج (Johnny Jostar)</h3>
+                            <p class="text-xs text-slate-500 mt-1">الطلاب المطورين: حمزة وفريقه</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-100 font-bold px-2 py-0.5 rounded">حالة التسليم: ممتاز</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-committees" class="tab-pane hidden space-y-4">
+                <h2 class="text-base font-bold text-slate-900 tracking-tight">🧑‍⚖️ لجان مناقشات مشاريع التخرج المشارك بها</h2>
+                <div class="bg-white border border-slate-200/60 p-5 rounded-xl shadow-sm max-w-xl space-y-4">
+                    <div class="flex justify-between items-center text-xs md:text-sm border-b border-slate-100 pb-3">
+                        <div>
+                            <span class="font-bold text-slate-900 block text-sm">مشروع: نظام التتبع المستودعي الذكي بالـ IoT</span>
+                            <span class="text-slate-400 block mt-1 text-xs">أعضاء اللجنة المقيمين: د. خلدون، د. حمزه الكوفحي (أنت)</span>
+                        </div>
+                        <span class="text-indigo-600 font-bold bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-md">الموعد: 25-06-2026</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input type="number" placeholder="العلامة من 100" class="w-36 p-2 rounded-lg border border-slate-200 bg-slate-50 text-sm text-center font-bold focus:outline-none focus:border-indigo-500">
+                        <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-lg transition-all shadow-sm">حفظ ورصد</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script>
+    const currentHODId = localStorage.getItem('userId');
+    const currentHODName = localStorage.getItem('userName');
+
+    if (currentHODName) {
+        document.querySelector('header span.text-slate-700').innerText = currentHODName;
+    }
+
+    async function loadDashboard() {
+        if (!currentHODId) return;
+
+        try {
+            // Stats
+            const statsRes = await fetch(`/api/hod/stats?hodId=${currentHODId}`);
+            const stats = await statsRes.json();
+            document.getElementById('countSup').innerText = stats.countSup;
+            document.getElementById('countProj').innerText = stats.countProj;
+            document.getElementById('countMyTeams').innerText = stats.countMyTeams;
+            document.getElementById('countCommittees').innerText = stats.countCommittees;
+
+            // Supervisors
+            const supRes = await fetch('/api/hod/supervisors');
+            const supervisors = await supRes.json();
+            const supContainer = document.querySelector('#tab-supervisors .space-y-3');
+            supContainer.innerHTML = supervisors.map(s => `
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-sm text-slate-800">${s.supervisorName}</div>
+                        <div class="text-xs text-slate-500 mt-1">عدد الفرق التابعة: ${s.teamCount} فرق — حالة التقارير المرفوعة: منتظمة</div>
+                    </div>
+                    <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-md text-xs font-bold">${s.status}</span>
+                </div>
+            `).join('');
+
+            // Teams Progress
+            const teamsRes = await fetch('/api/hod/teams-progress');
+            const teams = await teamsRes.json();
+            const teamsBody = document.querySelector('#tab-students tbody');
+            teamsBody.innerHTML = teams.map(t => `
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                    <td class="p-3.5 font-bold text-slate-900">${t.teamName} (${t.projectTitle})</td>
+                    <td class="p-3.5 text-slate-600">${t.supervisorName}</td>
+                    <td class="p-3.5 text-indigo-600 font-medium">${t.currentPhase}</td>
+                    <td class="p-3.5 font-bold text-emerald-600">${Math.round(t.progress)}%</td>
+                </tr>
+            `).join('');
+
+            // Coordinator Status
+            const coordRes = await fetch('/api/hod/coordinator-status');
+            const coord = await coordRes.json();
+            const coordContainer = document.querySelector('#tab-coordinator .bg-white');
+            coordContainer.innerHTML = `
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800">منسق القسم: ${coord.name}</h4>
+                    <p class="text-xs text-slate-500 mt-1">آخر إجراء معلن على النظام: ${coord.lastAction}</p>
+                </div>
+                <span class="text-xs font-bold bg-indigo-50 text-indigo-600 border border-indigo-100 px-3 py-1 rounded-md">${coord.status}</span>
+            `;
+
+            // My Teams (HOD as Supervisor)
+            const myTeamsRes = await fetch(`/api/supervisor/my-teams?supervisorId=${currentHODId}`);
+            if (myTeamsRes.ok) {
+                const myTeams = await myTeamsRes.json();
+                const myTeamsContainer = document.querySelector('#tab-my-teams .grid');
+                myTeamsContainer.innerHTML = myTeams.map(t => `
+                    <div class="bg-white border border-slate-200/60 p-5 rounded-xl shadow-sm flex flex-col justify-between h-32">
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">${t.teamName} (${t.projectTitle || 'لا يوجد مشروع'})</h3>
+                            <p class="text-xs text-slate-500 mt-1">الطلاب المطورين: ${t.members.map(m => m.studentName).join('، ')}</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-100 font-bold px-2 py-0.5 rounded">الحالة: ${t.supervisorStatus}</span>
+                            <button class="px-3 py-1 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors border border-indigo-100 text-xs font-bold rounded-md" onclick="alert('قريباً: مراسلة الفريق')">مراسلة الفريق</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Committees
+            const commRes = await fetch(`/api/supervisor/upcoming-presentations?supervisorId=${currentHODId}`);
+             if (commRes.ok) {
+                const committees = await commRes.json();
+                const commContainer = document.getElementById('tab-committees');
+                const title = commContainer.querySelector('h2');
+                commContainer.innerHTML = '';
+                commContainer.appendChild(title);
+                committees.forEach(c => {
+                    const div = document.createElement('div');
+                    div.className = "bg-white border border-slate-200/60 p-5 rounded-xl shadow-sm max-w-xl space-y-4 mb-4";
+                    div.innerHTML = `
+                        <div class="flex justify-between items-center text-xs md:text-sm border-b border-slate-100 pb-3">
+                            <div>
+                                <span class="font-bold text-slate-900 block text-sm">مشروع: ${c.projectTitle}</span>
+                                <span class="text-slate-400 block mt-1 text-xs">الفريق: ${c.teamName}</span>
+                            </div>
+                            <span class="text-indigo-600 font-bold bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-md">الموعد: ${new Date(c.presentationDate).toLocaleDateString('ar-JO')}</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="number" id="grade-${c.projectId}" placeholder="العلامة من 100" class="w-36 p-2 rounded-lg border border-slate-200 bg-slate-50 text-sm text-center font-bold focus:outline-none focus:border-indigo-500">
+                            <button onclick="submitGrade('${c.projectId}')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-lg transition-all shadow-sm">حفظ ورصد</button>
+                        </div>
+                    `;
+                    commContainer.appendChild(div);
+                });
+            }
+
+        } catch (err) {
+            console.error("Error loading HOD dashboard:", err);
+        }
+    }
+
+    async function submitGrade(projectId) {
+        const grade = document.getElementById(`grade-${projectId}`).value;
+        if (!grade) return alert("يرجى إدخال العلامة");
+        
+        try {
+            const res = await fetch('/api/supervisor/submit-grade', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ projectId, grade: parseFloat(grade) })
+            });
+            if (res.ok) {
+                alert("تم رصد العلامة بنجاح");
+            } else {
+                alert("فشل رصد العلامة");
+            }
+        } catch (err) {
+            alert("خطأ في الاتصال بالسيرفر");
+        }
+    }
+
+    window.onload = loadDashboard;
+
+    // Notification Logic
+    document.getElementById('notifBell').onclick = () => {
+        document.getElementById('notifDropdown').classList.toggle('hidden');
+        markAllNotificationsRead();
+    };
+
+    document.getElementById('closeNotifDropdown').onclick = () => {
+        document.getElementById('notifDropdown').classList.add('hidden');
+    };
+
+    async function loadNotifications() {
+        if (!currentHODId) return;
+        try {
+            const resp = await fetch(`/api/notifications/${currentHODId}`);
+            const notifs = await resp.json();
+            const badge = document.getElementById('notifBadge');
+            const list = document.getElementById('notifList');
+
+            const unreadCount = notifs.filter(n => !n.isRead).length;
+            if (unreadCount > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            if (notifs.length === 0) {
+                list.innerHTML = '<div class="text-center py-4 text-slate-500 text-xs">لا توجد تنبيهات جديدة</div>';
+            } else {
+                list.innerHTML = notifs.map(n => `
+                    <div class="p-3 rounded-lg ${n.isRead ? 'bg-white' : 'bg-indigo-50'} border border-slate-100 text-xs">
+                        <div class="text-slate-800 font-medium">${n.message}</div>
+                        <div class="text-[9px] text-slate-400 mt-1">${new Date(n.createdAt).toLocaleString('ar-JO')}</div>
+                    </div>
+                `).join('');
+            }
+        } catch (err) {
+            console.error("Error loading notifications:", err);
+        }
+    }
+
+    async function markAllNotificationsRead() {
+        if (!currentHODId) return;
+        try {
+            await fetch(`/api/notifications/read-all/${currentHODId}`, { method: 'POST' });
+            setTimeout(loadNotifications, 1000);
+        } catch (err) {
+            console.error("Error marking notifications as read:", err);
+        }
+    }
+
+    setInterval(loadNotifications, 10000);
+    loadNotifications();
+
+    function showTab(tabId) {
+        const panes = document.querySelectorAll('.tab-pane');
+        panes.forEach(p => p.classList.add('hidden'));
+
+        const buttons = document.querySelectorAll('aside button');
+        buttons.forEach(btn => {
+            if (btn.id !== 'logoutBtn') {
+                // إرجاع شكل الزر غير النشط تماماً كما هو في كود الطالب الأصلي المعتمد
+                btn.className = "w-full flex items-center justify-between px-3.5 py-2 rounded-xl font-bold text-sm transition-all text-right text-slate-300 hover:bg-white/5 hover:text-white";
+                const circle = btn.querySelector('div');
+                if(circle) { circle.className = "w-1.5 h-1.5 rounded-full bg-slate-500/40"; }
+            }
+        });
+
+        document.getElementById(tabId).classList.remove('hidden');
+
+        const activeBtn = document.getElementById(`btn-${tabId}`);
+        if (activeBtn) {
+            // تفعيل شكل الزر النشط وتأثير الكرت والـ active الخلفية المضاءة بملف الطالب
+            activeBtn.className = "w-full flex items-center justify-between px-3.5 py-2 rounded-xl font-bold text-sm transition-all text-right bg-white/10 text-white shadow-sm";
+            const activeCircle = activeBtn.querySelector('div');
+            if(activeCircle) { activeCircle.className = "w-1.5 h-1.5 rounded-full bg-indigo-400"; }
+        }
+    }
+
+
+    document.getElementById('logoutBtn').onclick = () => {
+        localStorage.clear();
+        window.location.href = "Login.html";
+    };
+</script>
+</body>
+</html>

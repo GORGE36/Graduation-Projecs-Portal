@@ -1,0 +1,956 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl" class="h-full">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>لوحة المشرف — Graduation Projects Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #ffffff;
+            background-image: radial-gradient(circle at 15% 25%, rgba(12, 8, 60, 0.08) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(12, 8, 60, 0.06) 0%, transparent 45%), radial-gradient(rgba(12, 8, 60, 0.08) 1.5px, transparent 0), radial-gradient(rgba(12, 8, 60, 0.05) 2.5px, transparent 0), linear-gradient(45deg, transparent 45%, rgba(12, 8, 60, 0.03) 46%, rgba(12, 8, 60, 0.03) 54%, transparent 55%), linear-gradient(-45deg, transparent 45%, rgba(12, 8, 60, 0.03) 46%, rgba(12, 8, 60, 0.03) 54%, transparent 55%);
+            background-size: 100% 100%, 100% 100%, 28px 28px, 56px 56px, 28px 28px, 28px 28px;
+            background-position: 0 0, 0 0, 0 0, 14px 14px, 0 0, 0 0;
+            margin: 0;
+        }
+
+        .glass-nav {
+            background: #0c083c;
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 4px 0 25px rgba(12, 8, 60, 0.25);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .sidebar-scrollable-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 1.5rem;
+        }
+
+        .luxury-card {
+            background: #0c083c;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 6px solid #f59e0b;
+            box-shadow: 0 20px 40px -15px rgba(12, 8, 60, 0.3);
+            border-radius: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px -10px rgba(12, 8, 60, 0.4);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .custom-input {
+            background-color: rgba(255, 255, 255, 0.12) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            color: #ffffff !important;
+            transition: all 0.3s ease;
+        }
+
+        .custom-input:focus {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            border-color: #f59e0b !important;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.25) !important;
+            outline: none;
+        }
+
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .custom-input option {
+            background-color: #0c083c;
+            color: #ffffff;
+        }
+
+        .btn-royal-to-yellow {
+            background-color: #f59e0b;
+            color: #0c083c;
+            font-weight: 900;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+
+        .btn-royal-to-yellow:hover {
+            background-color: #ffffff;
+            color: #0c083c;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* السكرول بار */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(12, 8, 60, 0.02);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .glass-nav ::-webkit-scrollbar-track, .luxury-card ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .glass-nav ::-webkit-scrollbar-thumb, .luxury-card ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-nav ::-webkit-scrollbar-thumb:hover, .luxury-card ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="h-full overflow-hidden">
+
+<script>
+    if (localStorage.getItem("loggedIn") !== "true" || localStorage.getItem("role") !== "Supervisor") {
+        window.location.href = "Login.html";
+    }
+</script>
+
+<div class="flex h-screen w-full overflow-hidden">
+
+    <!-- الشريط الجانبي الكحلي الملكي الفاخر عالي التباين -->
+    <aside class="w-80 glass-nav p-6 shrink-0 z-20">
+        <div class="sidebar-scrollable-content">
+            <div class="flex flex-col items-center text-center gap-3 mb-8 pb-6 border-b border-white/20">
+                <div class="p-1 rounded-2xl bg-white/10 border border-white/20">
+                    <img src="img/LOGO.jpg" alt="Logo" class="w-16 h-16 rounded-xl object-cover shadow-lg bg-white">
+                </div>
+                <span class="px-4 py-1.5 bg-amber-500/20 border border-amber-500/40 backdrop-blur-md rounded-full font-black text-amber-400 text-xs tracking-wider uppercase">
+                        لوحة الإشراف الأكاديمي
+                    </span>
+            </div>
+
+            <nav class="space-y-1.5">
+                <button data-view="overview" class="w-full text-right py-3.5 px-4 rounded-xl transition-all font-black text-white bg-gradient-to-r from-amber-500/20 to-transparent border-r-4 border-amber-500 shadow-sm">
+                    لوحة القيادة
+                </button>
+
+                <button data-view="requests" class="w-full text-right py-3.5 px-4 rounded-xl hover:bg-white/10 transition-all font-black text-white flex items-center justify-between">
+                    <span>الطلبات الواردة</span>
+                    <span id="badgeCount" class="bg-amber-500 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-full border border-white/20">0</span>
+                </button>
+
+                <button data-view="my-teams" class="w-full text-right py-3.5 px-4 rounded-xl hover:bg-white/10 transition-all font-black text-white">فرقك المعتمدة</button>
+                <button data-view="team-files" class="w-full text-right py-3.5 px-4 rounded-xl hover:bg-white/10 transition-all font-black text-white">ملفات الفرق</button>
+                <button data-view="tasks-progress" class="w-full text-right py-3.5 px-4 rounded-xl hover:bg-white/10 transition-all font-black text-white">المهام والتقدم</button>
+                <button data-view="committee" class="w-full text-right py-3.5 px-4 rounded-xl hover:bg-white/10 transition-all font-black text-white">لجنة المناقشات</button>
+                <button data-view="messages" class="w-full text-right py-3.5 px-4 rounded-xl hover:bg-white/10 transition-all font-black text-white">الغرفة الإشرافية</button>
+            </nav>
+        </div>
+
+        <div class="pt-4 border-t border-white/20 flex justify-between items-center shrink-0">
+            <div class="text-right">
+                <p class="text-xs text-white font-black">تسجيل الخروج</p>
+                <p class="text-[11px] text-amber-400 font-bold">نظام إدارة المشاريع</p>
+            </div>
+            <button onclick="logout()" class="w-11 h-11 bg-rose-950/60 border border-rose-500/40 hover:bg-rose-600 text-rose-200 hover:text-white rounded-xl flex items-center justify-center shadow-lg transition-all group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="white">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- القسم الرئيسي فوق الخلفية الهندسية البيضاء -->
+    <main class="flex-1 p-8 overflow-y-auto h-screen z-10">
+
+        <header class="flex items-center justify-between mb-8 gap-4">
+            <div class="luxury-card p-5 flex-1 flex items-center justify-between">
+                <div class="text-right">
+                    <h1 id="pageTitle" class="text-2xl font-black text-white tracking-tight">مرحباً دكتور</h1>
+                    <p class="text-sm font-black text-amber-400 italic mt-1" id="welcomeMsg">جاري مزامنة بياناتك الأكاديمية...</p>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/20 shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="relative">
+                <button id="notifBell" class="w-14 h-14 luxury-card flex items-center justify-center relative hover:bg-white/10 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span id="notifBadge" class="absolute top-3 right-3 bg-rose-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full border border-white hidden">0</span>
+                </button>
+
+                <div id="notifDropdown" class="hidden absolute left-0 mt-3 w-88 bg(#0c083c) luxury-card overflow-hidden z-[9999] flex flex-col max-h-[420px] w-80 p-4">
+                    <div class="p-2 border-b border-white/10 flex justify-between items-center">
+                        <span class="font-black text-white text-sm">آخر الإشعارات الواردة</span>
+                        <button onclick="document.getElementById('notifDropdown').classList.add('hidden')" class="text-white hover:text-amber-400 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="notifList" class="overflow-y-auto p-2 space-y-2 flex-1 mt-2">
+                        <div class="text-center py-6 text-white text-xs italic font-bold">لا توجد تنبيهات جديدة</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- واجهة لوحة القيادة (Overview) -->
+        <section id="overview" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="luxury-card p-6 !border-t-4 !border-rose-600">
+                    <div class="text-xs font-black text-white uppercase tracking-wider text-right">طلبات في الانتظار</div>
+                    <div class="text-4xl font-black mt-3 text-white text-right" id="overviewBadgeCount">0</div>
+                </div>
+                <div class="luxury-card p-6 !border-t-4 !border-amber-500">
+                    <div class="text-xs font-black text-white uppercase tracking-wider text-right">فرقك الحالية المعتمدة</div>
+                    <div class="text-4xl font-black mt-3 text-amber-400 text-right" id="currentTeamsCount">--</div>
+                </div>
+                <div class="luxury-card p-6 !border-t-4 !border-indigo-500">
+                    <div class="text-xs font-black text-white uppercase tracking-wider text-right">رسائل الغرفة النشطة</div>
+                    <div class="text-4xl font-black mt-3 text-white text-right">0</div>
+                </div>
+            </div>
+
+            <div class="luxury-card p-6 !border-r-4 !border-l-0 !border-amber-500 text-right">
+                <h3 class="font-black text-sm text-amber-400 mb-2 uppercase tracking-wide">إرشادات النظام للمشرفين</h3>
+                <p class="text-white text-sm leading-relaxed font-bold">أهلاً بك دكتور في البوابة الملكية لمشاريع التخرج. يمكنك الاطلاع الفوري على طلبات الانضمام الجديدة، مراجعة ملفات التقدم الأسبوعية لكل فريق، ورصد درجات التقييم والمناقشات بكل سهولة.</p>
+            </div>
+        </section>
+
+        <!-- واجهة الطلبات الواردة (Requests) -->
+        <section id="requests" class="hidden space-y-6">
+            <div id="noRequestMsg" class="luxury-card p-20 text-center font-black text-white text-base italic">لا يوجد طلبات إشراف جديدة حالياً</div>
+        </section>
+
+        <!-- واجهة الفرق المعتمدة (My Teams) -->
+        <section id="my-teams" class="hidden luxury-card p-8 text-right">
+            <div class="flex items-center justify-between mb-6 border-b border-white/20 pb-4">
+                <h2 class="text-xl font-black text-white">قائمة الفرق الأكاديمية المعتمدة تحت إشرافك</h2>
+                <span class="text-xs text-amber-400 font-black">رصد ومتابعة مستمرة</span>
+            </div>
+            <div class="overflow-x-auto rounded-xl border border-white/10 bg-white/[0.02]">
+                <table class="w-full text-right border-collapse">
+                    <thead>
+                    <tr class="text-white border-b border-white/20 bg-white/10 text-xs font-black uppercase">
+                        <th class="p-4">اسم الفريق الإشرافي</th>
+                        <th class="p-4">عنوان مشروع التخرج</th>
+                        <th class="p-4 text-center">عدد أعضاء الفريق</th>
+                    </tr>
+                    </thead>
+                    <tbody id="acceptedTeamsList" class="divide-y divide-white/10 text-sm font-bold text-white">
+                    <tr>
+                        <td colspan="3" class="p-8 text-center text-white font-black italic">جاري جلب القائمة الرسمية من السيرفر...</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- واجهة ملفات الفرق (Team Files) -->
+        <section id="team-files" class="hidden space-y-6 text-right">
+            <div class="luxury-card p-6">
+                <h2 class="text-xl font-black text-white mb-6 pb-2 border-b border-white/20">مستودع وثائق وملفات المشاريع</h2>
+                <div class="w-full max-w-md mb-6">
+                    <label class="block text-xs font-black text-white uppercase mb-2 tracking-wide">اختر الفريق لعرض وثائقه:</label>
+                    <select id="fileTeamSelect" onchange="loadTeamFiles()" class="w-full p-3.5 rounded-xl custom-input text-sm font-black cursor-pointer"></select>
+                </div>
+                <div id="filesContainer" class="space-y-4">
+                    <p class="text-white text-sm italic font-bold">يرجى تحديد أحد الفرق الإشرافية من الأعلى لعرض سجل تسليم الملفات.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- واجهة المهام والتقدم (Tasks Progress) -->
+        <section id="tasks-progress" class="hidden space-y-6 text-right">
+            <div class="luxury-card p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/20">
+                    <div class="flex-1 max-w-md">
+                        <label class="block text-xs font-black text-white uppercase mb-2 tracking-wide">تحديد الفريق للمتابعة:</label>
+                        <select id="taskTeamSelect" onchange="loadTeamTasks()" class="w-full p-3.5 rounded-xl custom-input text-sm font-black cursor-pointer"></select>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="showCreateTaskModal(event)" class="btn-royal-to-yellow px-6 py-3.5 rounded-xl text-xs tracking-wider">
+                            إسناد مهمة جديدة للفريق
+                        </button>
+                    </div>
+                </div>
+                <div id="tasksList" class="space-y-4">
+                    <p class="text-white text-sm italic font-bold">يرجى اختيار فريق من القائمة المنسدلة لبدء جدولة المهام والمراحل.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- واجهة لجنة المناقشة (Committee) -->
+        <section id="committee" class="hidden space-y-6 text-right">
+            <div class="luxury-card p-6">
+                <h2 class="text-xl font-black text-white mb-6 pb-2 border-b border-white/20">أعمال لجنة مناقشات مشاريع التخرج</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4 bg-white/[0.02] p-5 rounded-2xl border border-white/10">
+                        <h3 class="font-black text-sm text-white uppercase tracking-wide">حجز وتحديد فترات التواجد والمناقشة</h3>
+                        <div class="space-y-3.5">
+                            <div>
+                                <label class="block text-xs font-black text-white mb-1.5">تاريخ الفترة المتاحة:</label>
+                                <input type="date" id="availDate" class="w-full p-3 rounded-xl custom-input text-sm font-black">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-black text-white mb-1.5">النطاق الزمني (مثال: 09:00 - 11:00):</label>
+                                <input type="text" id="availTime" class="w-full p-3 rounded-xl custom-input text-sm font-black" placeholder="صباحاً أو مساءً...">
+                            </div>
+                            <button onclick="setAvailability()" class="w-full btn-royal-to-yellow py-3.5 rounded-xl text-xs tracking-wider mt-2">
+                                اعتماد وحفظ النطاق الزمني للمناقشات
+                            </button>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-white/20">
+                            <h4 class="text-xs font-black text-white mb-2 uppercase">فتراتك الزمنية المحفوظة سابقاً:</h4>
+                            <div id="myAvailList" class="space-y-2 max-h-40 overflow-y-auto"></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 bg-white/[0.02] p-5 rounded-2xl border border-white/10">
+                        <h3 class="font-black text-sm text-white uppercase tracking-wide">رصد الدرجات والتقييم النهائي للدفاع</h3>
+                        <div id="gradingList" class="space-y-3 max-h-[320px] overflow-y-auto">
+                            <p class="text-white text-sm italic font-bold">لا توجد سجلات مناقشة مفتوحة للرصد والتقييم حالياً.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="luxury-card p-6 !border-t-4 !border-emerald-600">
+                <h3 class="font-black text-sm text-emerald-400 mb-4 uppercase tracking-wide">جدول مواعيد جلسات الدفاع والمناقشة المعتمدة</h3>
+                <div id="upcomingPresentations" class="space-y-3">
+                    <p class="text-white text-sm italic font-bold">جاري تحميل الجلسات المجدولة رسمياً...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- واجهة الغرفة الإشرافية (Messages) -->
+        <section id="messages" class="hidden luxury-card p-6 space-y-6 text-right">
+            <div>
+                <h2 class="text-xl font-black text-white">الغرفة الإشرافية والتوجيه المباشر</h2>
+                <p class="text-xs text-amber-400 font-black mt-1">تواصل مباشر مشفر مع فرق مشاريع التخرج التابعة لك</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="w-full max-w-md">
+                    <label class="block text-xs font-black text-white uppercase mb-2">توجيه الرسالة إلى فريق:</label>
+                    <select id="teamSelect" class="w-full p-3.5 rounded-xl custom-input text-sm font-black cursor-pointer"></select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black text-white uppercase mb-2">منطوق التوجيه الإشرافي:</label>
+                    <textarea id="messageContent" rows="4" class="w-full p-3.5 rounded-xl custom-input text-sm font-bold" placeholder="اكتب التعليمات أو الملاحظات هنا ليتم تسليمها فوراً للفريق..."></textarea>
+                </div>
+
+                <div class="flex gap-3">
+                    <button id="sendMsgBtn" class="btn-royal-to-yellow px-6 py-3.5 rounded-xl text-xs tracking-wider">إرسال التوجيه للفريق</button>
+                    <button id="refreshMsgsBtn" class="px-6 py-3.5 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-xl font-black text-xs transition-all shadow-sm">تحديث الأرشيف</button>
+                </div>
+
+                <div class="pt-4 border-t border-white/20">
+                    <h3 class="text-sm font-black text-white mb-3">أرشيف المراسلات الأخيرة في الغرفة</h3>
+                    <div id="messagesList" class="space-y-3 max-h-64 overflow-y-auto p-3 bg-white/[0.02] rounded-xl border border-white/10"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- كود الـ JavaScript البرمجي المستقر والمربوط بالكامل -->
+<script>
+    const sections = ['overview', 'requests', 'my-teams', 'team-files', 'tasks-progress', 'committee', 'messages'];
+
+    document.querySelectorAll('nav button[data-view]').forEach(btn => {
+        btn.onclick = () => {
+            const view = btn.getAttribute('data-view');
+            sections.forEach(s => document.getElementById(s).classList.add('hidden'));
+            document.getElementById(view).classList.remove('hidden');
+
+            document.getElementById('pageTitle').textContent = btn.innerText.trim();
+
+            document.querySelectorAll('nav button').forEach(b => {
+                b.classList.remove('bg-gradient-to-r', 'from-amber-500/20', 'to-transparent', 'border-r-4', 'border-amber-500');
+                b.classList.add('hover:bg-white/10');
+            });
+            btn.classList.add('bg-gradient-to-r', 'from-amber-500/20', 'to-transparent', 'border-r-4', 'border-amber-500');
+            btn.classList.remove('hover:bg-white/10');
+
+            if (view === 'tasks-progress') {
+                loadTeamTasks();
+            } else if (view === 'team-files') {
+                loadTeamFiles();
+            } else if (view === 'committee') {
+                loadMyAvailability();
+                loadPendingGrading();
+                loadUpcomingPresentations();
+            }
+        };
+    });
+
+    const userName = localStorage.getItem("userName");
+    const userId = localStorage.getItem("userId");
+    document.getElementById('welcomeMsg').textContent = `مرحباً د. ${userName || 'المحترم'} ، بانتظار قراراتك الإشرافية والتقييمية`;
+
+    async function checkRequests() {
+        if (!userId) return;
+        try {
+            const response = await fetch(`/api/supervisor/pending-teams?supervisorId=${userId}`);
+            const teams = await response.json();
+            const badgeCount = document.getElementById('badgeCount');
+            const overviewBadgeCount = document.getElementById('overviewBadgeCount');
+            const container = document.getElementById('requests');
+
+            if (teams && teams.length > 0) {
+                container.innerHTML = `
+                            <div class="luxury-card p-6 mb-4 !border-r-4 !border-l-0 !border-amber-500 bg-white/[0.01]">
+                                <h2 class="text-xl font-black text-white">طلبات الإشراف الأكاديمي الواردة معلقة الاعتماد</h2>
+                                <p class="text-xs text-amber-400 mt-1 font-black">يرجى مراجعة بيانات المشروع والموافقة أو الاعتذار عن الإشراف</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                ${teams.map(t => `
+                                    <div class="luxury-card p-6 flex flex-col justify-between !border-t-4 !border-amber-500">
+                                        <div>
+                                            <div class="flex items-center justify-between mb-3">
+                                                <h3 class="text-lg font-black text-white">${t.teamName}</h3>
+                                                <span class="px-2.5 py-0.5 bg-amber-500/20 text-amber-400 text-[11px] font-black rounded-full border border-amber-500/40">طلب معلق</span>
+                                            </div>
+                                            <p class="text-sm font-bold text-white mb-6 bg-white/10 p-3 rounded-lg border border-white/10">
+                                                عنوان المقترح: <span class="text-white font-black underline">${t.projectTitle || 'لم يتم رصد العنوان بعد'}</span>
+                                            </p>
+                                        </div>
+                                        <div class="flex gap-3 pt-4 border-t border-white/10">
+                                            <button onclick="approveTeam('${t.teamId}')" class="flex-1 btn-royal-to-yellow py-3 rounded-xl text-xs">اعتماد وموافقة</button>
+                                            <button onclick="rejectTeam('${t.teamId}')" class="px-5 bg-rose-950/60 border border-rose-500/40 text-rose-200 hover:bg-rose-600 hover:text-white rounded-xl font-black text-xs transition-all">رفض الطلب</button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                badgeCount.textContent = teams.length;
+                if (overviewBadgeCount) overviewBadgeCount.textContent = teams.length;
+            } else {
+                container.innerHTML = '<div id="noRequestMsg" class="luxury-card p-20 text-center font-black text-white text-base italic">لا يوجد طلبات إشراف جديدة حالياً</div>';
+                badgeCount.textContent = "0";
+                if (overviewBadgeCount) overviewBadgeCount.textContent = "0";
+            }
+            loadAcceptedTeams();
+        } catch (err) {
+            console.error("Error fetching requests:", err);
+            container.innerHTML = `<div class="p-4 bg-rose-500/20 border border-rose-500 text-rose-200 rounded-xl text-center font-bold">فشل تحميل طلبات الإشراف (خطأ: ${err.message})</div>`;
+        }
+    }
+
+    async function loadAcceptedTeams() {
+        if (!userId) return;
+        try {
+            const resp = await fetch(`/api/supervisor/my-teams?supervisorId=${userId}`);
+            if (!resp.ok) {
+                console.error(`Failed to load accepted teams: ${resp.status}`);
+                return;
+            }
+            const teams = await resp.json();
+            const currentTeamsCount = document.getElementById('currentTeamsCount');
+            if (currentTeamsCount) {
+                currentTeamsCount.textContent = teams.length;
+            }
+            const list = document.getElementById('acceptedTeamsList');
+            if (!list) return;
+
+            if (teams.length === 0) {
+                list.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-white font-black italic">لا توجد أي فرق معتمدة تحت إشرافك الأكاديمي حالياً</td></tr>';
+                return;
+            }
+            list.innerHTML = teams.map(t => `
+                        <tr class="hover:bg-white/10 transition-all border-b border-white/10">
+                            <td class="p-4 font-black text-white">${t.teamName}</td>
+                            <td class="p-4 text-white font-bold">${t.projectTitle}</td>
+                            <td class="p-4 text-center text-amber-400 font-black">${t.membersCount} طلاب</td>
+                        </tr>
+                    `).join('');
+
+            const select = document.getElementById('teamSelect');
+            const taskTeamSelect = document.getElementById('taskTeamSelect');
+            const fileTeamSelect = document.getElementById('fileTeamSelect');
+
+            if (select) {
+                select.innerHTML = teams.map(t => `<option value="${t.teamId}">${t.teamName}</option>`).join('');
+            }
+            if (taskTeamSelect) {
+                taskTeamSelect.innerHTML = '<option value="">-- اختر الفريق المستهدف --</option>' + teams.map(t => `<option value="${t.teamId}">${t.teamName}</option>`).join('');
+            }
+            if (fileTeamSelect) {
+                fileTeamSelect.innerHTML = '<option value="">-- اختر الفريق المستهدف --</option>' + teams.map(t => `<option value="${t.teamId}">${t.teamName}</option>`).join('');
+            }
+            loadSupervisorMessages();
+        } catch (err) {
+            console.error("Error loading accepted teams:", err);
+        }
+    }
+
+    async function sendMessageToTeam() {
+        const teamId = document.getElementById('teamSelect')?.value;
+        const content = document.getElementById('messageContent')?.value;
+        if (!teamId || !content) {
+            alert('يرجى اختيار فريق وكتابة رسالة التوجيه أولاً.');
+            return;
+        }
+        if (!userId) {
+            alert('انتهت صلاحية الجلسة، يرجى إعادة تسجيل الدخول.');
+            return;
+        }
+        try {
+            const resp = await fetch(`/api/supervisor/send-to-team`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ TeamId: teamId, Content: content, SenderId: userId })
+            });
+            if (resp.ok) {
+                alert('تم بث التوجيه بنجاح إلى الفريق.');
+                document.getElementById('messageContent').value = '';
+                loadSupervisorMessages();
+            } else {
+                alert('فشل بث الرسالة، تأكد من اتصال الشبكة.');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    if (document.getElementById('sendMsgBtn')) {
+        document.getElementById('sendMsgBtn').onclick = sendMessageToTeam;
+    }
+    if (document.getElementById('refreshMsgsBtn')) {
+        document.getElementById('refreshMsgsBtn').onclick = loadSupervisorMessages;
+    }
+
+    async function loadSupervisorMessages() {
+        if (!userId) return;
+        try {
+            const resp = await fetch(`/api/supervisor/my-messages?supervisorId=${userId}`);
+            if (!resp.ok) {
+                console.error(`Failed to load messages: ${resp.status}`);
+                return;
+            }
+            const msgs = await resp.json();
+            const list = document.getElementById('messagesList');
+            if (!list) return;
+
+            if (msgs.length === 0) {
+                list.innerHTML = '<div class="text-center py-4 text-white text-xs italic font-black">أرشيف المراسلات خالي تماماً حالياً</div>';
+                return;
+            }
+            list.innerHTML = msgs.map(m => `
+                        <div class="p-3 bg-white/10 rounded-xl border border-white/10 shadow-sm text-right">
+                            <div class="text-xs font-black text-amber-400 mb-1">
+                                ${m.senderRole === 1 ? 'منك' : 'من: ' + m.senderName} 
+                                ${m.teamId ? ' (فريق: ' + m.teamName + ')' : ''}
+                            </div>
+                            <div class="text-sm text-white font-bold leading-relaxed">${m.content}</div>
+                            <div class="text-[10px] text-amber-200 mt-1 font-black">${new Date(m.createdAt).toLocaleString('ar-EG')}</div>
+                        </div>
+                    `).join('');
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    async function approveTeam(teamId) {
+        try {
+            const resp = await fetch(`/api/supervisor/accept-team/${teamId}?supervisorId=${userId}`, { method: 'POST' });
+            if (resp.ok) {
+                alert('تم قبول وإعتماد الفريق بنجاح.');
+                checkRequests();
+            } else {
+                const result = await resp.json();
+                const errorMsg = result.message || result.Message || 'فشل تنفيذ إجراء القبول.';
+                alert(`عذراً، ${errorMsg}`);
+            }
+        } catch (err) {
+            console.error(err);
+            alert('حدث خطأ في الاتصال بالسيرفر.');
+        }
+    }
+
+    async function rejectTeam(teamId) {
+        try {
+            const resp = await fetch(`/api/supervisor/reject-team/${teamId}?supervisorId=${userId}`, { method: 'POST' });
+            if (resp.ok) {
+                alert('تم الاعتذار عن طلب الإشراف بنجاح.');
+                checkRequests();
+            } else {
+                const result = await resp.json();
+                const errorMsg = result.message || result.Message || 'تعذر تنفيذ إجراء الرفض حالياً.';
+                alert(`عذراً، ${errorMsg}`);
+            }
+        } catch (err) {
+            console.error(err);
+            alert('عذراً، حدث خطأ في الاتصال بالسيرفر. يرجى التأكد من اتصالك بالإنترنت والمحاولة مرة أخرى.');
+        }
+    }
+
+    async function loadTeamTasks() {
+        const teamId = document.getElementById('taskTeamSelect').value;
+        const container = document.getElementById('tasksList');
+        if (!teamId) {
+            container.innerHTML = '<p class="text-white text-sm italic font-bold">يرجى اختيار فريق من القائمة المنسدلة لبدء جدولة المهام والمراحل.</p>';
+            return;
+        }
+        try {
+            const resp = await fetch(`/api/supervisor/teams/${teamId}/tasks`);
+            if (!resp.ok) {
+                console.error(`Failed to load tasks: ${resp.status}`);
+                container.innerHTML = `<p class="text-rose-400 text-sm font-black p-4 text-center">حدث خطأ أثناء تحميل المهام (كود: ${resp.status}).</p>`;
+                return;
+            }
+            const tasks = await resp.json();
+            if (tasks.length === 0) {
+                container.innerHTML = '<p class="text-white text-sm italic font-black p-4 text-center">لا يوجد أي مهام مسندة لهذا فريق حتى الآن.</p>';
+                return;
+            }
+            container.innerHTML = tasks.map(t => `
+                        <div class="p-4 bg-white/10 rounded-xl border border-white/10 space-y-3 relative">
+                            <button onclick="deleteTask('${t.taskId}')" class="absolute top-4 left-4 text-rose-400 hover:text-rose-300 transition-colors" title="حذف المهمة">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                            <div>
+                                <h4 class="font-black text-white text-base pl-8">${t.title}</h4>
+                                <p class="text-sm text-white mt-1 font-bold">${t.description || 'بدون تفاصيل إضافية'}</p>
+                                <div class="flex flex-wrap gap-4 mt-2 text-[11px] font-black text-amber-400">
+                                    <span>تاريخ الإسناد: ${new Date(t.createdAt).toLocaleDateString('ar-EG')}</span>
+                                    ${t.dueDate ? `<span>تاريخ الانتهاء: ${new Date(t.dueDate).toLocaleDateString('ar-EG')}</span>` : ''}
+                                    <span class="${t.isCompleted ? 'text-emerald-400' : 'text-amber-400'}">الحالة: ${t.isCompleted ? 'مكتملة' : 'قيد التنفيذ'}</span>
+                                </div>
+                            </div>
+                            ${(t.milestones && t.milestones.length > 0) ? `
+                                <div class="space-y-2 pl-4 border-r border-white/20">
+                                    <h5 class="text-xs font-black text-white">المراحل الفرعية (اضغط للتبديل):</h5>
+                                    ${t.milestones.map(m => `
+                                        <div onclick="toggleMilestone('${m.milestoneId}')" class="flex items-center justify-between text-xs text-white bg-white/5 p-2 rounded-lg cursor-pointer hover:bg-white/10 transition-all">
+                                            <span class="${m.isCompleted ? 'line-through text-slate-400' : 'font-bold'}">${m.title}</span>
+                                            <span class="text-[10px] ${m.isCompleted ? 'text-emerald-400' : 'text-amber-300'} font-black">
+                                                ${m.isCompleted ? '✓ مكتملة' : 'قيد الإنجاز'}
+                                            </span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('');
+        } catch (err) { console.error(err); }
+    }
+
+    function showCreateTaskModal(e) {
+        e.preventDefault();
+        const teamId = document.getElementById('taskTeamSelect').value;
+        if (!teamId) { alert('برجاء تحديد الفريق المستهدف أولاً قبل إضافة المهمة.'); return; }
+        
+        const title = prompt('أدخل عنوان المهمة الأكاديمية الجديدة:');
+        if (!title) return;
+        const desc = prompt('أدخل التوجيه أو الوصف التفصيلي للمهمة (اختياري):');
+        const dueDate = prompt('أدخل تاريخ انتهاء المهمة (YYYY-MM-DD) أو اتركه فارغاً:');
+        const milestonesRaw = prompt('أدخل المراحل الفرعية مفصولة بفاصلة (مثال: البحث, التصميم, البرمجة) أو اتركها فارغة:');
+        
+        const milestones = milestonesRaw ? milestonesRaw.split(',').map(m => m.trim()).filter(m => m.length > 0) : [];
+        
+        createNewTask(teamId, title, desc, milestones, dueDate);
+    }
+
+    async function createNewTask(teamId, title, description, milestones = [], dueDate = null) {
+        try {
+            const resp = await fetch('/api/supervisor/tasks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    teamId: teamId, 
+                    title: title, 
+                    description: description,
+                    initialProgress: 0,
+                    milestones: milestones,
+                    dueDate: dueDate || null
+                })
+            });
+            if (resp.ok) { alert('تم إسناد وجدولة المهمة بنجاح.'); loadTeamTasks(); }
+            else { 
+                const err = await resp.json();
+                alert('فشل إسناد المهمة: ' + (err.error || err.detail || 'حاول مجدداً.')); 
+            }
+        } catch (err) { console.error(err); }
+    }
+
+    async function deleteTask(taskId) {
+        if (!confirm('هل أنت متأكد من رغبتك في حذف هذه المهمة نهائياً؟')) return;
+        try {
+            const resp = await fetch(`/api/supervisor/tasks/${taskId}`, { method: 'DELETE' });
+            if (resp.ok) { loadTeamTasks(); }
+            else { alert('فشل حذف المهمة.'); }
+        } catch (err) { console.error(err); }
+    }
+
+    async function toggleMilestone(milestoneId) {
+        try {
+            const resp = await fetch(`/api/supervisor/milestones/${milestoneId}/toggle`, { method: 'POST' });
+            if (resp.ok) { loadTeamTasks(); }
+            else { alert('فشل تغيير حالة المرحلة.'); }
+        } catch (err) { console.error(err); }
+    }
+
+    async function loadTeamFiles() {
+        const teamId = document.getElementById('fileTeamSelect').value;
+        const container = document.getElementById('filesContainer');
+        if (!teamId) {
+            container.innerHTML = '<p class="text-white text-sm italic font-bold">يرجى تحديد أحد الفرق الإشرافية من الأعلى لعرض سجل تسليم الملفات.</p>';
+            return;
+        }
+        if (!userId) {
+            console.error("userId is not set");
+            container.innerHTML = '<p class="text-rose-400 text-sm font-black p-4 text-center">خطأ: لم يتم العثور على معرف المستخدم. يرجى تسجيل الدخول مرة أخرى.</p>';
+            return;
+        }
+        try {
+            console.log(`Fetching files for team ${teamId} with supervisorId ${userId}`);
+            const resp = await fetch(`/api/supervisor/team-files/${teamId}?supervisorId=${userId}`);
+            if (!resp.ok) {
+                console.error(`Failed to load files: ${resp.status} ${resp.statusText}`);
+                let errorMsg = "";
+                try {
+                    const errorJson = await resp.json();
+                    errorMsg = errorJson.detail || errorJson.Message || "";
+                } catch(e) {}
+                
+                if (resp.status === 401) {
+                    container.innerHTML = '<p class="text-rose-400 text-sm font-black p-4 text-center">غير مصرح لك بعرض ملفات هذا الفريق. (Unauthorized)</p>';
+                } else if (resp.status === 404) {
+                    container.innerHTML = '<p class="text-rose-400 text-sm font-black p-4 text-center">الفريق غير موجود. (Not Found)</p>';
+                } else {
+                    container.innerHTML = `<p class="text-rose-400 text-sm font-black p-4 text-center">حدث خطأ أثناء تحميل الملفات (كود الخطأ: ${resp.status}). ${errorMsg}</p>`;
+                }
+                return;
+            }
+            const files = await resp.json();
+            if (files.length === 0) {
+                container.innerHTML = '<p class="text-white text-sm italic font-black p-4 text-center">لم يقم هذا الفريق بتسليم أي ملفات أو وثائق رسمية بعد.</p>';
+                return;
+            }
+            container.innerHTML = files.map(f => `
+                        <div class="p-4 bg-white/10 rounded-xl border border-white/10 space-y-3">
+                            <div class="flex items-start justify-between gap-4 border-b border-white/20 pb-3">
+                                <div>
+                                    <h4 class="font-black text-white text-sm">ملف: ${f.fileName}</h4>
+                                    <p class="text-xs font-black text-white mt-1">وصف الوثيقة: <span class="text-amber-400 font-black">${f.description || 'لا يوجد'}</span></p>
+                                    <p class="text-[10px] text-amber-200 mt-1 font-black">تاريخ الرفع: ${new Date(f.submittedAt || f.uploadedAt).toLocaleString('ar-EG')}</p>
+                                </div>
+                                <a href="${f.filePath || f.fileUrl}" target="_blank" class="text-amber-400 font-black hover:underline text-xs shrink-0 ml-2 bg-white/10 px-3 py-1.5 rounded-lg border border-white/20 shadow-sm">تحميل وعرض</a>
+                            </div>
+                            <div class="space-y-2">
+                                <h5 class="text-[11px] font-black text-white">التقييمات والملاحظات الإشرافية السابقة على الملف:</h5>
+                                <div class="space-y-1 text-xs max-h-32 overflow-y-auto pl-2">
+                                    ${(f.comments && f.comments.length > 0) ? f.comments.map(c => `
+                                        <div class="p-2 bg-white/10 rounded-lg border border-white/10 text-white font-bold">
+                                            ${c.content} <span class="text-[10px] text-amber-300 block mt-0.5">${new Date(c.createdAt).toLocaleString('ar-EG')}</span>
+                                        </div>
+                                    `).join('') : '<p class="text-white font-black italic text-[11px]">لا يوجد ملاحظات مدونة بعد.</p>'}
+                                </div>
+                                <div class="flex gap-2 pt-1">
+                                    <input type="text" id="comment-${f.fileSubmissionId}" placeholder="اكتب ملاحظة فنية أو تقييم للملف هنا..." class="flex-1 p-2 text-xs rounded-lg custom-input font-bold shadow-inner">
+                                    <button onclick="addFileComment('${f.fileSubmissionId}')" class="px-4 py-2 bg-white hover:bg-amber-500 text-slate-900 hover:text-slate-900 rounded-lg text-xs font-black transition-all shadow-sm">حفظ الملاحظة</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+        } catch (err) { console.error('Error loading team files', err); }
+    }
+
+    async function addFileComment(fileSubmissionId) {
+        const input = document.getElementById(`comment-${fileSubmissionId}`);
+        const content = input.value.trim();
+        if (!content) { alert('برجاء تدوين محتوى التعليق التقني أولاً.'); return; }
+        try {
+            const resp = await fetch('/api/supervisor/file-comment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ fileSubmissionId: fileSubmissionId, content: content })
+            });
+            if (resp.ok) { input.value = ''; loadTeamFiles(); }
+            else { alert("تعذر إدراج الملاحظة"); }
+        } catch (err) { console.error(err); }
+    }
+
+    async function loadMyAvailability() {
+        if (!userId) return;
+        try {
+            const resp = await fetch(`/api/supervisor/availability?supervisorId=${userId}`);
+            const list = await resp.json();
+            const container = document.getElementById('myAvailList');
+            if (list.length === 0) {
+                container.innerHTML = '<p class="text-white/50 text-[10px] italic">لا يوجد فترات مسجلة</p>';
+                return;
+            }
+            container.innerHTML = list.map(a => `
+                <div class="p-2 bg-white/5 rounded border border-white/10 flex justify-between items-center">
+                    <span class="text-white text-[11px] font-bold">${new Date(a.availableDate).toLocaleDateString('ar-EG')}</span>
+                    <span class="text-amber-400 text-[11px] font-black">${a.timeSlot}</span>
+                </div>
+            `).join('');
+        } catch (err) { console.error(err); }
+    }
+
+    async function loadPendingGrading() {
+        if (!userId) return;
+        try {
+            const resp = await fetch(`/api/supervisor/pending-grading?supervisorId=${userId}`);
+            const list = await resp.json();
+            const container = document.getElementById('gradingList');
+            if (list.length === 0) {
+                container.innerHTML = '<p class="text-white text-sm italic font-bold">لا توجد سجلات مناقشة مفتوحة للرصد والتقييم حالياً.</p>';
+                return;
+            }
+            container.innerHTML = list.map(p => `
+                <div class="p-4 bg-white/10 rounded-xl border border-white/10 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-white font-black text-sm">${p.projectName}</h4>
+                        <span class="text-[10px] bg-amber-500 text-slate-900 px-2 py-0.5 rounded-full font-black">انتظار التقييم</span>
+                    </div>
+                    <p class="text-[11px] text-white/70 font-bold">فريق: ${p.teamName}</p>
+                    <button onclick="alert('سيتم فتح واجهة التقييم الرقمي قريباً')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[11px] font-black transition-all">رصد الدرجات الآن</button>
+                </div>
+            `).join('');
+        } catch (err) { console.error(err); }
+    }
+
+    async function loadUpcomingPresentations() {
+        if (!userId) return;
+        try {
+            const resp = await fetch(`/api/supervisor/upcoming-presentations?supervisorId=${userId}`);
+            const list = await resp.json();
+            const container = document.getElementById('upcomingPresentations');
+            if (list.length === 0) {
+                container.innerHTML = '<p class="text-white text-sm italic font-bold">لا توجد جلسات مناقشة مجدولة قريباً.</p>';
+                return;
+            }
+            container.innerHTML = list.map(p => `
+                <div class="p-4 bg-white/5 rounded-xl border border-emerald-500/30 flex justify-between items-center">
+                    <div>
+                        <h4 class="text-white font-black text-sm">${p.projectName}</h4>
+                        <p class="text-[10px] text-emerald-400 font-bold mt-1">الموعد: ${new Date(p.presentationDate).toLocaleString('ar-EG')}</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-[10px] text-white/50">القاعة</span>
+                        <span class="text-white font-black text-xs">قاعة المناقشات الرئيسية</span>
+                    </div>
+                </div>
+            `).join('');
+        } catch (err) { console.error(err); }
+    }
+
+    async function setAvailability() {
+        const date = document.getElementById('availDate').value;
+        const time = document.getElementById('availTime').value;
+
+        if (!date || !time) {
+            alert('يرجى تحديد التاريخ والنطاق الزمني أولاً.');
+            return;
+        }
+
+        try {
+            const resp = await fetch(`/api/supervisor/availability?supervisorId=${userId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ date: date, timeSlot: time })
+            });
+
+            const result = await resp.json();
+
+            if (resp.ok && result.success) {
+                alert('تم حفظ موعد التواجد بنجاح.');
+                document.getElementById('availDate').value = '';
+                document.getElementById('availTime').value = '';
+                loadMyAvailability();
+            } else {
+                // عرض رسالة الخطأ المحددة من السيرفر إذا وجدت
+                const errorMsg = result.message || 'حدث خطأ أثناء محاولة حفظ الموعد.';
+                alert(`فشل الحفظ: ${errorMsg}`);
+            }
+        } catch (err) {
+            console.error(err);
+            alert('تعذر الاتصال بالسيرفر، يرجى المحاولة لاحقاً.');
+        }
+    }
+
+    function logout() {
+        localStorage.clear();
+        window.location.href = "Login.html";
+    }
+
+    document.getElementById('notifBell').onclick = (e) => {
+        e.stopPropagation();
+        document.getElementById('notifDropdown').classList.toggle('hidden');
+    };
+    document.addEventListener('click', () => {
+        document.getElementById('notifDropdown').classList.add('hidden');
+    });
+    document.getElementById('notifDropdown').onclick = (e) => e.stopPropagation();
+
+    async function loadNotifications() {
+        if (!userId) return;
+        try {
+            const response = await fetch(`/api/supervisor/notifications?supervisorId=${userId}`);
+            const notifs = await response.json();
+            const badge = document.getElementById('notifBadge');
+            const list = document.getElementById('notifList');
+            if (!list) return;
+
+            const unreadCount = notifs.filter(n => !n.isRead).length;
+            if (unreadCount > 0) {
+                badge.textContent = unreadCount;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            if (notifs.length === 0) {
+                list.innerHTML = '<div class="text-center py-4 text-white text-xs italic font-black">لا توجد تنبيهات</div>';
+            } else {
+                list.innerHTML = notifs.map(n => `
+                            <div class="p-3 rounded-xl ${n.isRead ? 'bg-white/10' : 'bg-amber-500/20 border-r-4 border-amber-500'} transition-all text-right shadow-inner">
+                                <div class="text-[10px] font-black text-amber-400 mb-1 uppercase">${n.type === 'NewMessage' ? 'رسالة جديدة' : 'مهمة جديدة'}</div>
+                                <div class="text-xs text-white font-black">${n.message}</div>
+                                <div class="text-[10px] text-amber-200 mt-1 font-black">${new Date(n.createdAt).toLocaleString('ar-EG')}</div>
+                            </div>
+                        `).join('');
+            }
+        } catch (err) {
+            console.error("Error loading notifications:", err);
+        }
+    }
+
+    window.onload = () => {
+        checkRequests();
+        loadNotifications();
+        setInterval(loadNotifications, 15000);
+    };
+</script>
+</body>
+</html>

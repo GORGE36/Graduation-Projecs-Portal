@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد — Graduation Projects Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* تطبيق الخلفية الهندسية النظيفة مع توضيح الخطوط والزركشة بدقة */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #ffffff;
+            background-image: radial-gradient(circle at 15% 25%, rgba(12, 8, 60, 0.08) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(12, 8, 60, 0.06) 0%, transparent 45%), radial-gradient(rgba(12, 8, 60, 0.08) 1.5px, transparent 0), radial-gradient(rgba(12, 8, 60, 0.05) 2.5px, transparent 0), linear-gradient(45deg, transparent 45%, rgba(12, 8, 60, 0.03) 46%, rgba(12, 8, 60, 0.03) 54%, transparent 55%), linear-gradient(-45deg, transparent 45%, rgba(12, 8, 60, 0.03) 46%, rgba(12, 8, 60, 0.03) 54%, transparent 55%);
+            background-size: 100% 100%, 100% 100%, 28px 28px, 56px 56px, 28px 28px, 28px 28px;
+            background-position: 0 0, 0 0, 0 0, 14px 14px, 0 0, 0 0;
+            margin: 0;
+        }
+
+        /* تحويل البطاقة إلى الكحلي الملكي الفاخر مع الخط الذهبي العلوي والظلال العميقة */
+        .luxury-card {
+            background: #0c083c;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 8px solid #f59e0b; /* الخط الذهبي المتوهج */
+            box-shadow: 0 30px 60px -15px rgba(12, 8, 60, 0.35);
+            border-radius: 2.5rem;
+            transition: all 0.4s ease-in-out;
+        }
+
+        /* جعل حقول الإدخال والقوائم شفافة ومتباينة بامتياز داخل الكارد الداكن */
+        .custom-input {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #ffffff !important;
+            transition: all 0.3s ease;
+        }
+
+        .custom-input:focus {
+            background-color: rgba(255, 255, 255, 0.15) !important;
+            border-color: #f59e0b !important;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15) !important;
+            outline: none;
+        }
+
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* تخصيص الخيارات داخل الـ select لتظهر بخلفية داكنة متناسقة */
+        .custom-input option {
+            background-color: #0c083c;
+            color: #ffffff;
+        }
+
+        /* الزر الرئيسي باللون الذهبي العنبري الملوكي */
+        .btn-gold-main {
+            background-color: #f59e0b;
+            color: #0c083c;
+            font-weight: 800;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+
+        .btn-gold-main:hover {
+            background-color: #ffffff;
+            color: #0c083c;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+<div class="luxury-card p-8 w-full max-w-lg shadow-2xl">
+
+    <!-- الهيدر وشعار البوابة متناسق مع الكارد الداكن -->
+    <div class="text-center mb-6">
+            <span class="px-4 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-full font-black text-amber-500 text-xs tracking-wider uppercase inline-block mb-3">
+                Graduation Projects Portal
+            </span>
+        <h2 class="text-2xl font-black text-white">إنشاء حساب جديد</h2>
+        <p class="text-slate-300 font-bold text-xs mt-1">انضم الآن إلى المنصة الإشرافية والأكاديمية الموحدة</p>
+    </div>
+
+    <!-- حقول البيانات داخل الكارد -->
+    <div class="space-y-4 text-right">
+        <div>
+            <label class="block text-xs font-black text-slate-300 mb-1.5 mr-1 uppercase tracking-wide">الاسم الكامل</label>
+            <input id="newName" type="text" placeholder="أدخل اسمك الثلاثي" class="w-full p-3.5 rounded-xl custom-input font-bold text-sm">
+        </div>
+
+        <div>
+            <label class="block text-xs font-black text-slate-300 mb-1.5 mr-1 uppercase tracking-wide">البريد الإلكتروني الأكاديمي</label>
+            <input id="newEmail" type="email" placeholder="example@univ.edu.jo" class="w-full p-3.5 rounded-xl custom-input font-bold text-sm text-left" dir="ltr">
+        </div>
+
+        <div>
+            <label class="block text-xs font-black text-slate-300 mb-1.5 mr-1 uppercase tracking-wide">كلمة المرور</label>
+            <input id="newPass" type="password" placeholder="••••••••" class="w-full p-3.5 rounded-xl custom-input font-bold text-sm text-left" dir="ltr">
+        </div>
+
+        <div>
+            <label class="block text-xs font-black text-slate-300 mb-1.5 mr-1 uppercase tracking-wide">نوع الحساب (الدور الأكاديمي)</label>
+            <select id="newRole" class="w-full p-3.5 rounded-xl custom-input font-black text-sm cursor-pointer">
+                <option value="Student">طالب (Student)</option>
+                <option value="Supervisor">مشرف أكاديمي (Supervisor)</option>
+                <option value="Committee">لجنة المناقشة (Committee)</option>
+                <option value="HOD">رئيس القسم (Head of Dept)</option>
+                <option value="Coordinator">منسق المشاريع (Coordinator)</option>
+            </select>
+        </div>
+
+        <!-- زر التأكيد الفخم المعكوس -->
+        <button onclick="handleSignUp()" class="w-full btn-gold-main py-4 rounded-xl text-base tracking-wide mt-4 active:scale-95">
+            تأكيد إنشاء الحساب
+        </button>
+
+        <!-- روابط التنقل السفلية المتباينة -->
+        <p class="text-center text-slate-400 text-xs font-bold mt-4">
+            لديك حساب بالفعل؟
+            <a href="login.html" class="text-amber-500 hover:text-white underline transition-colors mr-1">تسجيل الدخول المباشر</a>
+        </p>
+    </div>
+</div>
+
+<!-- الكود البرمجي الثابت والمستقر لحفظ البيانات -->
+<script>
+    function handleSignUp() {
+        const name = document.getElementById('newName').value.trim();
+        const email = document.getElementById('newEmail').value.trim();
+        const pass = document.getElementById('newPass').value;
+        const role = document.getElementById('newRole').value;
+
+        if (!name || !email || !pass) {
+            return alert("الرجاء تعبئة كافة الحقول المطلوبة لضمان تسجيل الحساب.");
+        }
+
+        const userData = { name, email, role };
+        localStorage.setItem("registeredUser", JSON.stringify(userData));
+
+        alert(`تم إنشاء حسابك الأكاديمي بنجاح كـ (${role})! يمكنك الآن التوجه لصفحة تسجيل الدخول.`);
+        window.location.href = "login.html";
+    }
+</script>
+</body>
+</html>
